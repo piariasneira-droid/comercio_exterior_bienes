@@ -1,0 +1,625 @@
+---
+title: "Análisis Comercio Exterior - Comparativa Regional"
+author: "S.G. de Análisis Económico"
+lang: es
+language: 
+  title-block-author-single: "Autor"
+format:
+  html:
+    page-layout: full
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    self-contained: true
+    css: styles.css
+params:
+  ano: 2025
+  periodo: 11
+  pais: 0
+  sector: "0"
+---
+
+```{r setup, echo = FALSE, include=FALSE}
+# Configuración inicial
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+# Parámetros desde YAML
+fil_ano <- params$ano
+fil_per <- params$periodo
+fil_pais <- params$pais
+fil_sectores <- params$sector
+
+# Cargar funciones y librerías
+source("./procfunshinysectores.R")
+
+instala_carga_librerias <- function(pkgs){
+  nuevos <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
+  if(length(nuevos)) install.packages(nuevos)
+  lapply(pkgs, library, character.only = TRUE)
+}
+
+instala_carga_librerias(c("data.table", "dplyr", "DT", "arrow", 
+                          "openxlsx", "plotly", "htmltools"))
+```
+
+```{r carga_metadatos, echo = FALSE, include=FALSE}
+# Metadatos: Sectores y agrupaciones
+df_sectores <- data.table::rbindlist(
+  list(
+    data.table::as.data.table(openxlsx::read.xlsx("../../data/metatratado/sectores.xlsx", sheet = "sectores")),
+    data.table::as.data.table(openxlsx::read.xlsx("../../data/metatratado/sectores.xlsx", sheet = "agregaciones"))
+  ),
+  use.names = TRUE,
+  fill = TRUE
+)
+
+# Metadatos: Países y regiones
+df_pais <- data.table::rbindlist(
+  list(
+    data.table::as.data.table(openxlsx::read.xlsx("../../data/metatratado/paises_zonas.xlsx", sheet = "paises")),
+    data.table::as.data.table(openxlsx::read.xlsx("../../data/metatratado/paises_zonas.xlsx", sheet = "regiones"))
+  ),
+  use.names = TRUE,
+  fill = TRUE
+)
+```
+
+```{r preparacion_datos_mad, echo = FALSE, include=FALSE}
+# ========== COMUNIDAD DE MADRID ==========
+parametros_mad <- crear_listas_parametros(
+  region = "mad",
+  ano = as.integer(fil_ano),
+  per = as.integer(fil_per),
+  fpais = as.integer(fil_pais),
+  fsec = fil_sectores,
+  mapeo_pais = df_pais,
+  mapeo_sectores = df_sectores
+)
+
+dataset_mad <- arrow::open_dataset(parametros_mad$archivo)
+
+totales_mad <- calculo_totales(
+  df_query = dataset_mad, 
+  param = parametros_mad
+)
+
+df_tabla_sectores_mad <- tabla_sectores_datacomex(
+  datas = dataset_mad,
+  tot = totales_mad,
+  df_sec = df_sectores, 
+  parametros = parametros_mad
+)
+
+df_tabla_paises_mad <- tabla_paises_datacomex(
+  datas = dataset_mad,
+  tot = totales_mad,
+  df_paises = df_pais, 
+  parametros = parametros_mad
+)
+```
+
+```{r preparacion_datos_esp, echo = FALSE, include=FALSE}
+# ========== ESPAÑA ==========
+parametros_esp <- crear_listas_parametros(
+  region = "esp",
+  ano = as.integer(fil_ano),
+  per = as.integer(fil_per),
+  fpais = as.integer(fil_pais),
+  fsec = fil_sectores,
+  mapeo_pais = df_pais,
+  mapeo_sectores = df_sectores
+)
+
+dataset_esp <- arrow::open_dataset(parametros_esp$archivo)
+
+totales_esp <- calculo_totales(
+  df_query = dataset_esp, 
+  param = parametros_esp
+)
+
+df_tabla_sectores_esp <- tabla_sectores_datacomex(
+  datas = dataset_esp,
+  tot = totales_esp,
+  df_sec = df_sectores, 
+  parametros = parametros_esp
+)
+
+df_tabla_paises_esp <- tabla_paises_datacomex(
+  datas = dataset_esp,
+  tot = totales_esp,
+  df_paises = df_pais, 
+  parametros = parametros_esp
+)
+```
+
+## Parámetros del Informe {.unnumbered}
+
+::: {style="background-color: #e8f4f8; padding: 15px; border-radius: 5px; margin: 20px 0;"}
+**Configuración del análisis:**
+
+-   **Período:** `r paste0(toupper(substr(tolower(parametros_mad$texto_periodo), 1, 1)), substr(tolower(parametros_mad$texto_periodo), 2, nchar(parametros_mad$texto_periodo)), " ", parametros_mad$ano)`
+-   **País/Zona (filtro):** `r parametros_mad$nombre_pais`
+-   **Sector (filtro):** `r parametros_mad$nombre_sector`
+-   **Regiones comparadas:** Comunidad de Madrid vs España
+:::
+
+---
+
+# 1. Análisis por Sectores Económicos
+
+::: {.descripcion-tab style="background-color: #f8f9fa; border-left: 4px solid #3c8dbc; padding: 15px 20px; margin-bottom: 25px; border-radius: 0 5px 5px 0;"}
+### Descripción
+
+Comparativa de la **estructura del comercio exterior por sectores** entre la Comunidad de Madrid y España para el período seleccionado.
+
+**Contenido:**
+
+-   **Treemaps:** Visualización proporcional del peso de cada sector en las exportaciones e importaciones
+-   **Tablas de datos:** Detalle numérico con valores absolutos, porcentajes y variaciones
+-   **Gráficos por subsectores:** Volumen y contribución a la tasa de variación
+
+💡 **Tip:** Compara visualmente las diferencias estructurales entre ambas regiones.
+:::
+
+## 1.1 Treemaps de Exportaciones por Sectores
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r treemap_sectores_exp_mad, echo = FALSE, fig.height=6}
+grafica_treemap_informe(
+  dt = df_tabla_sectores_mad,
+  tipo = "sectores",
+  flujo = "exp", 
+  para = parametros_mad
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r treemap_sectores_exp_esp, echo = FALSE, fig.height=6}
+grafica_treemap_informe(
+  dt = df_tabla_sectores_esp,
+  tipo = "sectores",
+  flujo = "exp", 
+  para = parametros_esp
+)
+```
+:::
+:::
+
+## 1.2 Treemaps de Importaciones por Sectores
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r treemap_sectores_imp_mad, echo = FALSE, fig.height=6}
+grafica_treemap_informe(
+  dt = df_tabla_sectores_mad,
+  tipo = "sectores",
+  flujo = "imp", 
+  para = parametros_mad
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r treemap_sectores_imp_esp, echo = FALSE, fig.height=6}
+grafica_treemap_informe(
+  dt = df_tabla_sectores_esp,
+  tipo = "sectores",
+  flujo = "imp", 
+  para = parametros_esp
+)
+```
+:::
+:::
+
+## 1.3 Tablas de Datos por Sectores
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r tabla_sectores_mad, echo = FALSE}
+render_datatable_datacomexsec_desplegable(
+  df = df_tabla_sectores_mad[, .(orden, niv, nombre, exp, exp_per_reg, tva_exp, con_exp,
+                    imp, imp_per_reg, tva_imp, con_imp, saldo, saldo_prev)],
+  param = parametros_mad,
+  cols_semaforo = c("tva_exp", "tva_imp", "saldo", "saldo_prev"),
+  cols_barras_cien = c("exp_per_reg", "imp_per_reg"),
+  cols_barras_con = c("con_exp", "con_imp"),
+  cols_enteros = c("orden")
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r tabla_sectores_esp, echo = FALSE}
+render_datatable_datacomexsec_desplegable(
+  df = df_tabla_sectores_esp[, .(orden, niv, nombre, exp, exp_per_reg, tva_exp, con_exp,
+                    imp, imp_per_reg, tva_imp, con_imp, saldo, saldo_prev)],
+  param = parametros_esp,
+  cols_semaforo = c("tva_exp", "tva_imp", "saldo", "saldo_prev"),
+  cols_barras_cien = c("exp_per_reg", "imp_per_reg"),
+  cols_barras_con = c("con_exp", "con_imp"),
+  cols_enteros = c("orden")
+)
+```
+:::
+:::
+
+## 1.4 Volumen de Exportaciones por Subsectores
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r vol_subsectores_exp_mad, echo = FALSE, fig.height=7}
+grafica_volumen_subsectores(
+  df = df_tabla_sectores_mad, 
+  para = parametros_mad, 
+  nmax = 8, 
+  flujo = "exp"
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r vol_subsectores_exp_esp, echo = FALSE, fig.height=7}
+grafica_volumen_subsectores(
+  df = df_tabla_sectores_esp, 
+  para = parametros_esp, 
+  nmax = 8, 
+  flujo = "exp"
+)
+```
+:::
+:::
+
+## 1.5 Volumen de Importaciones por Subsectores
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r vol_subsectores_imp_mad, echo = FALSE, fig.height=7}
+grafica_volumen_subsectores(
+  df = df_tabla_sectores_mad, 
+  para = parametros_mad, 
+  nmax = 8, 
+  flujo = "imp"
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r vol_subsectores_imp_esp, echo = FALSE, fig.height=7}
+grafica_volumen_subsectores(
+  df = df_tabla_sectores_esp, 
+  para = parametros_esp, 
+  nmax = 8, 
+  flujo = "imp"
+)
+```
+:::
+:::
+
+## 1.6 Contribución a la TVA - Exportaciones
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r con_subsectores_exp_mad, echo = FALSE, fig.height=7}
+grafica_contribuciones_subsectores(
+  df = df_tabla_sectores_mad,
+  para = parametros_mad,
+  nmax = 4,
+  flujo = "exp"
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r con_subsectores_exp_esp, echo = FALSE, fig.height=7}
+grafica_contribuciones_subsectores(
+  df = df_tabla_sectores_esp,
+  para = parametros_esp,
+  nmax = 4,
+  flujo = "exp"
+)
+```
+:::
+:::
+
+## 1.7 Contribución a la TVA - Importaciones
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r con_subsectores_imp_mad, echo = FALSE, fig.height=7}
+grafica_contribuciones_subsectores(
+  df = df_tabla_sectores_mad,
+  para = parametros_mad,
+  nmax = 4,
+  flujo = "imp"
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r con_subsectores_imp_esp, echo = FALSE, fig.height=7}
+grafica_contribuciones_subsectores(
+  df = df_tabla_sectores_esp,
+  para = parametros_esp,
+  nmax = 4,
+  flujo = "imp"
+)
+```
+:::
+:::
+
+---
+
+# 2. Análisis por Países y Regiones
+
+::: {.descripcion-tab style="background-color: #f8f9fa; border-left: 4px solid #3c8dbc; padding: 15px 20px; margin-bottom: 25px; border-radius: 0 5px 5px 0;"}
+### Descripción
+
+Comparativa de la **distribución geográfica del comercio exterior** entre la Comunidad de Madrid y España.
+
+**Contenido:**
+
+-   **Treemaps:** Principales socios comerciales por volumen
+-   **Tablas de datos:** Ranking detallado por destino/origen
+-   **Gráficos por países:** Volumen y contribución a la variación
+
+💡 **Tip:** Identifica diferencias en los principales socios comerciales de cada región.
+:::
+
+## 2.1 Treemaps de Exportaciones por Países
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r treemap_paises_exp_mad, echo = FALSE, fig.height=6}
+grafica_treemap_informe(
+  dt = df_tabla_paises_mad,
+  tipo = "paises",
+  flujo = "exp", 
+  para = parametros_mad
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r treemap_paises_exp_esp, echo = FALSE, fig.height=6}
+grafica_treemap_informe(
+  dt = df_tabla_paises_esp,
+  tipo = "paises",
+  flujo = "exp", 
+  para = parametros_esp
+)
+```
+:::
+:::
+
+## 2.2 Treemaps de Importaciones por Países
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r treemap_paises_imp_mad, echo = FALSE, fig.height=6}
+grafica_treemap_informe(
+  dt = df_tabla_paises_mad,
+  tipo = "paises",
+  flujo = "imp", 
+  para = parametros_mad
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r treemap_paises_imp_esp, echo = FALSE, fig.height=6}
+grafica_treemap_informe(
+  dt = df_tabla_paises_esp,
+  tipo = "paises",
+  flujo = "imp", 
+  para = parametros_esp
+)
+```
+:::
+:::
+
+## 2.3 Tablas de Datos por Países
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r tabla_paises_mad, echo = FALSE}
+render_datatable_datacomexpaises_desplegable(
+  df = df_tabla_paises_mad[, .(orden, niv, pais, exp, exp_per_reg, tva_exp, con_exp,
+                           imp, imp_per_reg, tva_imp, con_imp, saldo, saldo_prev)],
+  param = parametros_mad,
+  cols_semaforo = c("tva_exp", "tva_imp", "saldo", "saldo_prev"),
+  cols_barras_cien = c("exp_per_reg", "imp_per_reg"),
+  cols_barras_con = c("con_exp", "con_imp"),
+  cols_enteros = c("orden")
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r tabla_paises_esp, echo = FALSE}
+render_datatable_datacomexpaises_desplegable(
+  df = df_tabla_paises_esp[, .(orden, niv, pais, exp, exp_per_reg, tva_exp, con_exp,
+                           imp, imp_per_reg, tva_imp, con_imp, saldo, saldo_prev)],
+  param = parametros_esp,
+  cols_semaforo = c("tva_exp", "tva_imp", "saldo", "saldo_prev"),
+  cols_barras_cien = c("exp_per_reg", "imp_per_reg"),
+  cols_barras_con = c("con_exp", "con_imp"),
+  cols_enteros = c("orden")
+)
+```
+:::
+:::
+
+## 2.4 Volumen de Exportaciones por Países
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r vol_paises_exp_mad, echo = FALSE, fig.height=7}
+grafica_volumen_paises(
+  df = df_tabla_paises_mad, 
+  para = parametros_mad, 
+  nmax = 8, 
+  flujo = "exp"
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r vol_paises_exp_esp, echo = FALSE, fig.height=7}
+grafica_volumen_paises(
+  df = df_tabla_paises_esp, 
+  para = parametros_esp, 
+  nmax = 8, 
+  flujo = "exp"
+)
+```
+:::
+:::
+
+## 2.5 Volumen de Importaciones por Países
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r vol_paises_imp_mad, echo = FALSE, fig.height=7}
+grafica_volumen_paises(
+  df = df_tabla_paises_mad, 
+  para = parametros_mad, 
+  nmax = 8, 
+  flujo = "imp"
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r vol_paises_imp_esp, echo = FALSE, fig.height=7}
+grafica_volumen_paises(
+  df = df_tabla_paises_esp, 
+  para = parametros_esp, 
+  nmax = 8, 
+  flujo = "imp"
+)
+```
+:::
+:::
+
+## 2.6 Contribución a la TVA - Exportaciones
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r con_paises_exp_mad, echo = FALSE, fig.height=7}
+grafica_contribuciones_paises(
+  df = df_tabla_paises_mad,
+  para = parametros_mad,
+  nmax = 4,
+  flujo = "exp"
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r con_paises_exp_esp, echo = FALSE, fig.height=7}
+grafica_contribuciones_paises(
+  df = df_tabla_paises_esp,
+  para = parametros_esp,
+  nmax = 4,
+  flujo = "exp"
+)
+```
+:::
+:::
+
+## 2.7 Contribución a la TVA - Importaciones
+
+::: {.columns}
+::: {.column width="50%"}
+### Comunidad de Madrid
+
+```{r con_paises_imp_mad, echo = FALSE, fig.height=7}
+grafica_contribuciones_paises(
+  df = df_tabla_paises_mad,
+  para = parametros_mad,
+  nmax = 4,
+  flujo = "imp"
+)
+```
+:::
+
+::: {.column width="50%"}
+### España
+
+```{r con_paises_imp_esp, echo = FALSE, fig.height=7}
+grafica_contribuciones_paises(
+  df = df_tabla_paises_esp,
+  para = parametros_esp,
+  nmax = 4,
+  flujo = "imp"
+)
+```
+:::
+:::
+
+---
+
+## Notas {.unnumbered}
+
+::: {style="font-size: 12px; color: #888; border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 30px;"}
+**Comprobación de datos:** Los datos de España deben coincidir con los [informes mensuales de comercio exterior](https://comercio.gob.es/importacionexportacion/informes_estadisticas/paginas/informes-periodicos.aspx){target="_blank"} del Ministerio de Economía, Comercio y Empresa.
+
+[📄 Acceso al último informe](https://comercio.gob.es/ImportacionExportacion/Informes_Estadisticas/Documents/informe-mensual/Informe-Mensual-de-Comercio-Exterior-ultimo-periodo.pdf){target="_blank" style="color: #3c8dbc;"}
+
+**Nota sobre la comparativa:** Este documento permite analizar las diferencias estructurales entre el comercio exterior de la Comunidad de Madrid y el conjunto de España, facilitando la identificación de especializaciones regionales.
+:::

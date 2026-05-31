@@ -1,0 +1,86 @@
+---
+lang: es
+
+params:
+  anho:  2026
+  mes: 3
+
+execute:
+  echo:    false
+  warning: false
+  message: false
+---
+
+```{r setup}
+#| include: false
+# Carga de librerías
+source("./scr/R/nota_sectores/procfun/librerias.R")
+
+# Carga de parametros y actualización con params
+source("./scr/R/nota_sectores/procfun/parametros.r") 
+paramets$anho  <- as.integer(params$anho)
+paramets$mes <- params$mes
+paramets$fecha <- as.Date(paste(params$anho,as.integer(params$mes), "01", sep = "-"))
+
+#Carga de objetos etc
+source("./scr/R/nota_sectores/main_texts.r")
+source("./scr/R/nota_sectores/main_etl.r")
+source("./scr/R/nota_sectores/main_tablas.r")
+source("./scr/R/nota_sectores/main_plots.r")
+
+```
+
+```{r plot1-flotante}
+#| include: false
+#| fig-width:  !expr paramets$w1 / 2.54
+#| fig-height: !expr paramets$h1 / 2.54
+#| dpi: !expr paramets$dpi
+plot_mad_evo_mes
+```
+
+```{r tabla-ccaa-flotante}
+#| include: false
+knitr::include_graphics(
+  file.path(paramets$path_outt, "table_p1_t1.png")
+)
+```
+
+## EL ÚLTIMO DATO
+
+La Secretaría de Estado de Comercio ha publicado los datos de comercio exterior correspondientes a **`r .fmt_mna(paramets$mes)` de `r paramets$anho`**. Según esta fuente, las **exportaciones de la Comunidad de Madrid** alcanzaron los **`r .fmt_num(lista_mad$exp_euros)`** millones de euros, lo que supone `r ifelse(lista_mad$exp_euros_tva >= 0, "un **incremento**", "una **disminución**")` interanual del **`r paste0(.fmt_pct(abs(lista_mad$exp_euros_tva)), "%")`**. En cuanto a las **importaciones**, estas ascendieron a **`r .fmt_num(lista_mad$imp_euros)`** millones de euros en **`r .fmt_mna(paramets$mes)`**, registrando `r ifelse(lista_mad$imp_euros_tva >= 0, "un incremento", "una disminución")` interanual del **`r paste0(.fmt_pct(abs(lista_mad$imp_euros_tva)), "%")`**. La **tasa de cobertura** se situó en el **`r .fmt_pct((lista_mad$exp_euros / lista_mad$imp_euros) * 100)`**%. FALTA COMENTARIO RÁNKING
+
+--------
+
+En el **`r .per_label(paramets$mes, paramets$anho)`**, las exportaciones madrileñas alcanzaron los **`r .fmt_num(lista_mad$exp_euros_acu)`** millones de euros, con `r ifelse(lista_mad$exp_euros_acu_tva >= 0, "un incremento", "una disminución")` interanual del **`r paste0(.fmt_pct(abs(lista_mad$exp_euros_acu_tva)), "%")`**. La tasa de cobertura se situó en el **`r .fmt_pct((lista_mad$exp_euros_acu / lista_mad$imp_euros_acu) * 100)`**%.
+
+------------------------------------------------------------------------
+
+## CONTEXTO NACIONAL
+
+En el conjunto nacional, las **exportaciones** registraron en **`r .fmt_mna(paramets$mes)`** un valor de **`r .fmt_num(lista_esp$exp_euros)`** millones de euros, lo que representa `r ifelse(lista_esp$exp_euros_tva >= 0, "un **incremento**", "una **disminución**")` interanual del **`r paste0(.fmt_pct(abs(lista_esp$exp_euros_tva)), "%")`**. Las **importaciones**, por su parte, ascendieron a **`r .fmt_num(lista_esp$imp_euros)`** millones de euros, con `r ifelse(lista_esp$imp_euros_tva >= 0, "un **incremento**", "una **disminución**")` interanual del **`r paste0(.fmt_pct(abs(lista_esp$imp_euros_tva)), "%")`**. La **tasa de cobertura** nacional se situó en el **`r .fmt_pct((lista_esp$exp_euros / lista_esp$imp_euros) * 100)`**%.
+
+----------
+
+En el acumulado **`r .per_label(paramets$mes, paramets$anho)`**, las **exportaciones** nacionales alcanzaron los **`r .fmt_num(lista_esp$exp_euros_acu)`** millones de euros, registrando `r ifelse(lista_esp$exp_euros_acu_tva >= 0, "un **incremento**", "una **disminución**")` interanual del **`r paste0(.fmt_pct(abs(lista_esp$exp_euros_acu_tva)), "%")`**. Las **importaciones** se situaron en **`r .fmt_num(lista_esp$imp_euros_acu)`** millones de euros, con `r ifelse(lista_esp$imp_euros_acu_tva >= 0, "un **incremento**", "una **disminución**")` interanual del **`r paste0(.fmt_pct(abs(lista_esp$imp_euros_acu_tva)), "%")`**. La **tasa de cobertura** alcanzó el **`r .fmt_pct((lista_esp$exp_euros_acu / lista_esp$imp_euros_acu) * 100)`**%.
+
+-----------
+
+Las exportaciones madrileñas representaron el **`r paste0(.fmt_pct(lista_mad$exp_euros_peso), "%")`** del total nacional, situando a la Comunidad de Madrid en la **`r c("primera", "segunda", "tercera", "cuarta", "quinta")[lista_mad$exp_euros_rank]`** posición del ranking autonómico. Por su parte, las importaciones regionales concentraron el **`r paste0(.fmt_pct(lista_mad$imp_euros_peso), "%")`** del total nacional, lo que colocó a Madrid en la **`r c("primera", "segunda", "tercera", "cuarta", "quinta")[lista_mad$imp_euros_rank]`** posición entre las comunidades autónomas.
+
+-------------------
+
+COMENTARIO OTRAS CCAAS
+
+--------------------
+
+
+```{r}
+#| label:   render-tabla-ccaa
+#| echo:    false
+#| include: false
+#| warning: false
+#| message: false
+
+ft_ccaa
+```
+

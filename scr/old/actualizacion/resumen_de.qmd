@@ -1,0 +1,293 @@
+---
+title: "Comercio Exterior de bienes"
+author: "S.G. de Análisis Económico"
+lang: es
+language: 
+  title-block-athor-single: "Autor"
+format:
+  html:
+    page-layout: full
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    self-contained: true
+    css: styles.css
+---
+
+```{r setup, echo = FALSE, include=FALSE}
+# Configuración inicial
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+# Parámetros
+fecha <- '2025-10-01'                             # Fecha final
+fecha_ini <- '2017-01-01'                         # Fecha inicial para
+fecha_ini_alt <- '1995-01-01'                     # Fecha inicial para evoluciones temporales flujos
+ano_ini <- 1995                                   # Año inicio
+reg <- "Madrid, Comunidad de"                     # Región
+# reg <- "España"
+valores_con <- 6                                  # Barras contribuciones
+valores_con_bis <- 20                             # Barras volumen
+
+# Cargar scripts y configuración
+source("./scripts/resumen_de.R")
+```
+
+## **1. Tabla resumen**
+
+A continuación se presenta una tabla que muestra el volumen de exportaciones e importaciones, en millones de euros, para España y la Comunidad de Madrid durante `r asigna_nombre_mes(mes_filtro)` de `r as.integer(substr(fecha, 1, 4))`. La tabla incluye también los datos acumulados desde comienzos de año, así como las tasas de variación interanual y la tasas de cobertura correspondientes.
+
+```{r, echo = FALSE}
+
+# Divide la tabla: selecciona las variables que corresponden a cada tabla
+variables_no_ytm <- c("Región", "Exportaciones", "TVA (Exp)", "Importaciones", "TVA (Imp)", "TC")
+variables_ytm <- c("Región", 
+                   "Exportaciones (YTM)", "TVA (Exp YTM)", 
+                   "Importaciones (YTM)", "TVA (Imp YTM)", "TC (YTM)")
+
+tabla_no_ytm <- tabla_resultado[, variables_no_ytm]
+tabla_ytm <- tabla_resultado[, variables_ytm] %>%
+  rename(
+    Exportaciones = `Exportaciones (YTM)`,
+    `TVA (Exp)` = `TVA (Exp YTM)`,
+    Importaciones = `Importaciones (YTM)`, 
+    `TVA (Imp)` = `TVA (Imp YTM)`, 
+    TC = `TC (YTM)`
+  )
+
+# Opciones comunes (sin botones)
+dt_options <- list(
+  pageLength = 10,
+  width = "100%",
+  autoWidth = FALSE,
+  dom = 'rtip',   # Sin 'f' para quitar el buscador y sin botones
+  columnDefs = list(
+    list(className = 'dt-center', targets = 0),
+    list(className = 'dt-right', targets = 1:5)
+  ),
+  language = list(
+    url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json'
+  )
+)
+
+# Mes y año para los títulos (con mayúscula inicial)
+titulo_mes <- paste0(
+  toupper(substring(asigna_nombre_mes(mes_filtro), 1, 1)),
+  substring(asigna_nombre_mes(mes_filtro), 2),
+  " de ",
+  as.integer(substr(fecha, 1, 4))
+)
+
+titulo_mes_acumulado <- paste0(
+  "Acumulado a ", asigna_nombre_mes(mes_filtro), " de ",
+  as.integer(substr(fecha, 1, 4))
+)
+
+# Tabla 1: Datos mensuales
+datatable(
+  tabla_no_ytm,
+  caption = htmltools::tags$caption(
+    style = 'caption-side: top; text-align: center; font-size: 120%; font-weight: bold;',
+    titulo_mes
+  ),
+  rownames = FALSE,
+  filter = 'none',
+  options = dt_options
+) %>%
+  formatStyle(
+    'Región',
+    fontWeight = 'bold'
+  ) %>%
+  formatRound(
+    2:6,
+    digits = 1,
+    mark = ".",
+    dec.mark = ","
+  ) %>%
+  formatStyle(
+    c('TVA (Exp)', 'TVA (Imp)'),
+    color = styleInterval(0, c('red', 'green'))
+  )
+
+# Tabla 2: Datos acumulados
+datatable(
+  tabla_ytm,
+  caption = htmltools::tags$caption(
+    style = 'caption-side: top; text-align: center; font-size: 120%; font-weight: bold;',
+    titulo_mes_acumulado
+  ),
+  rownames = FALSE,
+  filter = 'none',
+  options = dt_options
+) %>%
+  formatStyle(
+    'Región',
+    fontWeight = 'bold'
+  ) %>%
+  formatRound(
+    2:6,
+    digits = 1,
+    mark = ".",
+    dec.mark = ","
+  ) %>%
+  formatStyle(
+    c('TVA (Exp)', 'TVA (Imp)'),
+    color = styleInterval(0, c('red', 'green'))
+  )
+```
+
+## **2. Evolución de los flujos comerciales de la C. de Madrid**
+
+### **2.1 Evolución de las Exportaciones e Importaciones**
+
+A continuación se muestra la evolución del flujo de las exportaciones e importaciones en la Comunidad de Madrid desde `r format(as.Date(fecha_ini_alt), "%B de %Y")` hasta `r format(as.Date(fecha), "%B de %Y")`.
+
+```{r, echo = FALSE}
+plot_trade_mad_ts
+```
+
+### **2.2 Evolución mensual**
+
+Para eliminar la distorsión estacional, el siguiente gráfico presenta la evolución anual de los flujos comerciales considerando exclusivamente los datos de `r asigna_nombre_mes(mes_filtro)` de cada año, abarcando el período `r ano_ini`-`r as.integer(substr(fecha, 1, 4))`. Las barras representan los valores monetarios mensuales de exportaciones e importaciones, mientras que las líneas muestran sus respectivas tasas de variación interanual.
+
+```{r, echo = FALSE}
+plot_mad_evo_mes_tva
+```
+
+## **3. Análisis Comparativo por Años**
+
+### **3.1 Evolución Anual de las exportaciones**
+
+El siguiente análisis muestra la evolución del volumen de exportaciones expresado en millones de euros. Se incluyen los valores correspondientes al mes de `r asigna_nombre_mes(mes_filtro)` para cada año del período `r format(as.Date(fecha_ini_alt), "%Y")`-`r format(as.Date(fecha), "%Y")`, así como el acumulado desde enero hasta `r asigna_nombre_mes(mes_filtro)` y el total anual de cada ejercicio.
+
+```{r, echo = FALSE}
+plot_mad_exp_anos
+```
+
+### **3.2 Evolución Anual de las importaciones**
+
+El siguiente análisis muestra la evolución del volumen de importaciones expresado en millones de euros. Se incluyen los valores correspondientes al mes de `r asigna_nombre_mes(mes_filtro)` para cada año del período `r format(as.Date(fecha_ini_alt), "%Y")`-`r format(as.Date(fecha), "%Y")`, así como el acumulado desde enero hasta `r asigna_nombre_mes(mes_filtro)` y el total anual de cada ejercicio.
+
+```{r, echo = FALSE}
+plot_mad_imp_anos
+```
+
+## **4. Análisis de la tendia - Media Móvil No Centrada 12 Meses**
+
+### **4.1 MMNC12 exportaciones**
+
+Evolución de las medias móviles de 12 meses no centradas (MMNC12) y sus tasas de variación anual (TVA) del flujo de exportaciones para el período `r format(as.Date(fecha_ini), "%Y")`-`r format(as.Date(fecha), "%Y")`.
+
+```{r, echo = FALSE}
+plot_mad_exp_mm12
+```
+
+### **4.2 MMNC12 importaciones**
+
+Evolución de las medias móviles de 12 meses no centradas (MMNC12) y sus tasas de variación anual (TVA) del flujo de importaciones para el período `r format(as.Date(fecha_ini), "%Y")`-`r format(as.Date(fecha), "%Y")`.
+
+```{r, echo = FALSE}
+plot_mad_imp_mm12
+```
+
+## **5. Capítulos TARIC y países más relevantes**
+
+### **5.1 Top `r valores_con_bis` Capítulos más exportados**
+
+Ranking de los `r valores_con_bis` capítulos TARIC más exportados por la Comunidad de Madrid en el acumulado enero-`r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`. El gráfico combina el volumen acumulado del período (verde claro) con el valor del mes de `r asigna_nombre_mes(mes_filtro)` (verde oscuro). Barras ordenadas por importe anual descendente.
+
+```{r, echo = FALSE}
+plot_mad_exp_toptaric
+```
+
+### **5.2 Top `r valores_con_bis` destinos**
+
+Ranking de los `r valores_con_bis` principales países de destino de las exportaciones madrileñas en el acumulado enero-`r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`. El gráfico combina el volumen acumulado del período (verde claro) con el valor del mes de `r asigna_nombre_mes(mes_filtro)` (verde oscuro). Barras ordenadas por importe anual descendente.
+
+```{r, echo = FALSE}
+plot_mad_exp_toppais
+```
+
+### **5.3 Top `r valores_con_bis` Capítulos más importados**
+
+Ranking de los `r valores_con_bis` capítulos TARIC más importados por la Comunidad de Madrid en el acumulado enero-`r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`. El gráfico combina el volumen acumulado del período (verde claro) con el valor del mes de `r asigna_nombre_mes(mes_filtro)` (verde oscuro). Barras ordenadas por importe anual descendente.
+
+```{r, echo = FALSE}
+plot_mad_imp_toptaric
+```
+
+### **5.4 Top `r valores_con_bis` origenes**
+
+Ranking de los `r valores_con_bis` principales países de origen de las importaciones madrileñas en el acumulado enero-`r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`. El gráfico combina el volumen acumulado del período (verde claro) con los valores del mes de `r asigna_nombre_mes(mes_filtro)` (barras ocuras). Barras ordenadas por importe anual descendente.
+
+```{r, echo = FALSE}
+plot_mad_imp_toppais
+```
+
+## **6. Contribuciones a la tasa de variación anual de los flujos mensuales**
+
+### **6.1 Contribución por Capítulos TARIC a la TVA de las exportaciones (Mes)**
+
+Ranking de las `r valores_con` contribuciones más destacadas al alza y las `r valores_con` a la baja de los diferentes capítulos TARIC a la tasa de variación interanual de las exportaciones en `r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`.
+
+```{r, echo = FALSE}
+plot_mad_exp_con_mes_taric
+```
+
+### **6.2 Contribución por países a la TVA de las exportaciones (Mes)**
+
+Ranking de las `r valores_con` contribuciones más destacadas al alza y las `r valores_con` a la baja de los diferentes destinos a la tasa de variación interanual de las exportaciones en `r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`
+
+```{r, echo = FALSE}
+plot_mad_exp_con_mes_pais
+```
+
+### **6.3 Contribución por Capítulos TARIC a la TVA de las importaciones (Mes)**
+
+Ranking de las `r valores_con` contribuciones más destacadas al alza y las `r valores_con` a la baja de los diferentes capítulos TARIC a la tasa de variación interanual de las importaciones en `r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`.
+
+```{r, echo = FALSE}
+plot_mad_imp_con_mes_taric
+```
+
+### **6.4 Contribución por países a la TVA de las importaciones (Mes)**
+
+Ranking de las `r valores_con` contribuciones más destacadas al alza y las `r valores_con` a la baja de los diferentes origenes a la tasa de variación interanual de las exportaciones en `r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`
+
+```{r, echo = FALSE}
+plot_mad_imp_con_mes_pais
+```
+
+## **7. Contribuciones a la tasa de variación anual de los flujos mensuales acumulados (YTD)**
+
+### **7.1 Contribución por Capítulos TARIC a la TVA de las exportaciones (YTD)**
+
+Ranking de las `r valores_con` contribuciones más destacadas al alza y las `r valores_con` a la baja de los diferentes capítulos TARIC a la tasa de variación interanual de las exportaciones en el periodo enero-`r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`.
+
+```{r, echo = FALSE}
+plot_mad_exp_con_acu_taric
+```
+
+### **7.2 Contribución por países a la TVA de las exportaciones (YTD)**
+
+Ranking de las `r valores_con` contribuciones más destacadas al alza y las `r valores_con` a la baja de los diferentes origenes TARIC a la tasa de variación interanual de las exportaciones en el periodo enero-`r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`.
+
+```{r, echo = FALSE}
+plot_mad_exp_con_acu_pais
+```
+
+### **7.3 Contribución por Capítulos TARIC a la TVA de las ixportaciones (YTD)**
+
+Ranking de las `r valores_con` contribuciones más destacadas al alza y las `r valores_con` a la baja de los diferentes capítulos TARIC a la tasa de variación interanual de las importaciones en el periodo enero-`r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`.
+
+```{r, echo = FALSE}
+plot_mad_imp_con_acu_taric
+```
+
+### **7.4 Contribución por países a la TVA de las importaciones (YTD)**
+
+Ranking de las `r valores_con` contribuciones más destacadas al alza y las `r valores_con` a la baja de los diferentes destinos a la tasa de variación interanual de las importaciones en el periodo enero-`r asigna_nombre_mes(mes_filtro)` de `r format(as.Date(fecha), "%Y")`.
+
+```{r, echo = FALSE}
+plot_mad_imp_con_acu_pais
+```

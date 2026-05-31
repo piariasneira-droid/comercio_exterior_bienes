@@ -1,0 +1,10 @@
+{
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/scr/python"
+    ],
+    "r.path": "${workspaceFolder}\\.pixi\\envs\\default\\Scripts\\R.exe",
+    "r.rterm.linux": "${workspaceFolder}\\.pixi\\envs\\default\\Scripts\\R.exe",
+    "r.lsp.path": "${workspaceFolder}\\.pixi\\envs\\default\\Scripts\\R.exe",
+    "disable.hardware.acceleration": true,
+    "r.lsp.promptToInstall": false
+}

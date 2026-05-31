@@ -1,0 +1,13 @@
+name: sectorespaises
+title: sectorespaises
+username: datacomex
+account: datacomex
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16287270
+bundleId: 11308359
+url: https://datacomex.shinyapps.io/sectorespaises/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|pruebas.R

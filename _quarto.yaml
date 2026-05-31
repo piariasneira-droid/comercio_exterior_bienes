@@ -1,0 +1,13 @@
+project:
+  type: default
+  execute-dir: project
+
+format:
+  docx:
+    reference-doc: plantillas/plantilla_nota_sectores.docx
+    toc: false
+    number-sections: false
+    fig-width:  16.5
+    fig-height:  9.0
+    fig-dpi:    300
+    fig-format: png

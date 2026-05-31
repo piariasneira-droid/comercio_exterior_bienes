@@ -1,0 +1,17 @@
+{
+  "hash": "08d817eff8e621bf42e5bc4cdbd0244c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nlang: es\n\nparams:\n  anho:  2026\n  mes: 3\n\nexecute:\n  echo:    false\n  warning: false\n  message: false\n---\n\n\n\n\n\n\n\n## EL ÚLTIMO DATO\n\nLa Secretaría de Estado de Comercio ha publicado los datos de comercio exterior correspondientes a **marzo de 2026**. Según esta fuente, las **exportaciones de la Comunidad de Madrid** alcanzaron los **4.760,0** millones de euros, lo que supone un **incremento** interanual del **4,0%**. En cuanto a las **importaciones**, estas ascendieron a **9.271,3** millones de euros en **marzo**, registrando un incremento interanual del **2,6%**. La **tasa de cobertura** se situó en el **51,3**%. FALTA COMENTARIO RÁNKING\n\n--------\n\nEn el **acumulado del primer trimestre de 2026**, las exportaciones madrileñas alcanzaron los **12.466,0** millones de euros, con un incremento interanual del **0,4%**. La tasa de cobertura se situó en el **48,8**%.\n\n------------------------------------------------------------------------\n\n## CONTEXTO NACIONAL\n\nEn el conjunto nacional, las **exportaciones** registraron en **marzo** un valor de **35.859,4** millones de euros, lo que representa un **incremento** interanual del **5,1%**. Las **importaciones**, por su parte, ascendieron a **40.231,3** millones de euros, con un **incremento** interanual del **1,6%**. La **tasa de cobertura** nacional se situó en el **89,1**%.\n\n----------\n\nEn el acumulado **acumulado del primer trimestre de 2026**, las **exportaciones** nacionales alcanzaron los **96.506,0** millones de euros, registrando un **incremento** interanual del **0,7%**. Las **importaciones** se situaron en **108.183,4** millones de euros, con una **disminución** interanual del **2,5%**. La **tasa de cobertura** alcanzó el **89,2**%.\n\n-----------\n\nLas exportaciones madrileñas representaron el **13,3%** del total nacional, situando a la Comunidad de Madrid en la **segunda** posición del ranking autonómico. Por su parte, las importaciones regionales concentraron el **23,0%** del total nacional, lo que colocó a Madrid en la **segunda** posición entre las comunidades autónomas.\n\n-------------------\n\nCOMENTARIO OTRAS CCAAS\n\n--------------------\n\n\n\n\n",
+    "supporting": [
+      "nota_sectores_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

@@ -1,0 +1,81 @@
+# =========================================================
+# 1. Carpetas de datos y salidas (Outputs)
+# =========================================================
+data/
+rawparquet/
+output/
+plots/
+html/
+htmls/
+
+# =========================================================
+# 2. Archivos de datos, ofimática e imágenes (Nivel global)
+# =========================================================
+*.csv
+*.7z
+*.rar 
+*.zip
+*.parquet
+*.xlsx
+*.xls
+*.xlsb
+*.docx
+*.doc
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.html
+~$*
+
+# =========================================================
+# 3. Entornos virtuales y dependencias temporales
+# (Útil para gestionar múltiples entornos sin ensuciar Git)
+# =========================================================
+# Pixi (gestor de paquetes)
+.pixi/
+
+# Python
+.env
+.venv
+env/
+venv/
+ENV/
+__pycache__/
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+renv/library/
+renv/local/
+
+# =========================================================
+# 4. Archivos temporales y del sistema
+# =========================================================
+.DS_Store
+*.swp
+*~
+Thumbs.db
+
+# =========================================================
+# 5. EXCEPCIONES: Archivos y directorios forzados a incluirse
+# =========================================================
+# Asegura que carpetas clave y archivos de código no se ignoren 
+# accidentalmente si cayeran en reglas anteriores.
+!scr/
+!src/
+!notebooks/
+
+# Archivos de código y configuración esenciales
+!*.R
+!*.qmd
+!*.Rmd
+!*.py
+!*.ipynb
+!*.toml
+!*.lock
+!*.sh
+!*.css
+!*.Rproj

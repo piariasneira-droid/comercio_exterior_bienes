@@ -1,0 +1,2793 @@
+./data/output/nota_sec_2026_03/htmls
+├── espana_anopasado
+│   ├── bump_exp_esp_paises_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_esp_paises_2025_anual.html
+│   ├── bump_exp_esp_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_esp_sec_2025_anual.html
+│   ├── bump_imp_esp_paises_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_esp_paises_2025_anual.html
+│   ├── bump_imp_esp_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_esp_sec_2025_anual.html
+│   ├── contrib_exp_esp_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_esp_pais_2025_anual.html
+│   ├── contrib_exp_esp_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_esp_sec_2025_anual.html
+│   ├── contrib_imp_esp_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_esp_pais_2025_anual.html
+│   ├── contrib_imp_esp_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_esp_sec_2025_anual.html
+│   ├── treemap_exp_esp_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_esp_pais_2025_anual.html
+│   ├── treemap_exp_esp_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_esp_sec_2025_anual.html
+│   ├── treemap_imp_esp_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_esp_pais_2025_anual.html
+│   ├── treemap_imp_esp_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_esp_sec_2025_anual.html
+│   ├── vol_exp_esp_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_esp_pais_2025_anual.html
+│   ├── vol_exp_esp_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_esp_sec_2025_anual.html
+│   ├── vol_imp_esp_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_imp_esp_pais_2025_anual.html
+│   ├── vol_imp_esp_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   └── vol_imp_esp_sec_2025_anual.html
+├── espana_mes
+│   ├── bump_exp_esp_paises_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_esp_paises_2026_12.html
+│   ├── bump_exp_esp_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_esp_sec_2026_12.html
+│   ├── bump_imp_esp_paises_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_esp_paises_2026_12.html
+│   ├── bump_imp_esp_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_esp_sec_2026_12.html
+│   ├── contrib_exp_esp_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_esp_pais_2026_12.html
+│   ├── contrib_exp_esp_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_esp_sec_2026_12.html
+│   ├── contrib_imp_esp_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_esp_pais_2026_12.html
+│   ├── contrib_imp_esp_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_esp_sec_2026_12.html
+│   ├── treemap_exp_esp_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_esp_pais_2026_12.html
+│   ├── treemap_exp_esp_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_esp_sec_2026_12.html
+│   ├── treemap_imp_esp_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_esp_pais_2026_12.html
+│   ├── treemap_imp_esp_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_esp_sec_2026_12.html
+│   ├── vol_exp_esp_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_esp_pais_2026_12.html
+│   ├── vol_exp_esp_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_esp_sec_2026_12.html
+│   ├── vol_imp_esp_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_imp_esp_pais_2026_12.html
+│   ├── vol_imp_esp_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   └── vol_imp_esp_sec_2026_12.html
+├── espana_ytm
+│   ├── bump_exp_esp_paises_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_esp_paises_2026_ytm12.html
+│   ├── bump_exp_esp_sec_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_esp_sec_2026_ytm12.html
+│   ├── bump_imp_esp_paises_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_esp_paises_2026_ytm12.html
+│   ├── bump_imp_esp_sec_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_esp_sec_2026_ytm12.html
+│   ├── contrib_exp_esp_pais_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_esp_pais_2026_ytm12.html
+│   ├── contrib_exp_esp_sec_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_esp_sec_2026_ytm12.html
+│   ├── contrib_imp_esp_pais_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_esp_pais_2026_ytm12.html
+│   ├── contrib_imp_esp_sec_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_esp_sec_2026_ytm12.html
+│   ├── treemap_exp_esp_pais_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_esp_pais_2026_ytm12.html
+│   ├── treemap_exp_esp_sec_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_esp_sec_2026_ytm12.html
+│   ├── treemap_imp_esp_pais_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_esp_pais_2026_ytm12.html
+│   ├── treemap_imp_esp_sec_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_esp_sec_2026_ytm12.html
+│   ├── vol_exp_esp_pais_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_esp_pais_2026_ytm12.html
+│   ├── vol_exp_esp_sec_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_esp_sec_2026_ytm12.html
+│   ├── vol_imp_esp_pais_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_imp_esp_pais_2026_ytm12.html
+│   ├── vol_imp_esp_sec_2026_ytm12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   └── vol_imp_esp_sec_2026_ytm12.html
+├── madrid_anopasado
+│   ├── bump_exp_mad_paises_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_mad_paises_2025_anual.html
+│   ├── bump_exp_mad_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_mad_sec_2025_anual.html
+│   ├── bump_imp_mad_paises_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_mad_paises_2025_anual.html
+│   ├── bump_imp_mad_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_mad_sec_2025_anual.html
+│   ├── contrib_exp_mad_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_mad_pais_2025_anual.html
+│   ├── contrib_exp_mad_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_mad_sec_2025_anual.html
+│   ├── contrib_imp_mad_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_mad_pais_2025_anual.html
+│   ├── contrib_imp_mad_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_mad_sec_2025_anual.html
+│   ├── treemap_exp_mad_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_mad_pais_2025_anual.html
+│   ├── treemap_exp_mad_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_mad_sec_2025_anual.html
+│   ├── treemap_imp_mad_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_mad_pais_2025_anual.html
+│   ├── treemap_imp_mad_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_mad_sec_2025_anual.html
+│   ├── vol_exp_mad_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_mad_pais_2025_anual.html
+│   ├── vol_exp_mad_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_mad_sec_2025_anual.html
+│   ├── vol_imp_mad_pais_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_imp_mad_pais_2025_anual.html
+│   ├── vol_imp_mad_sec_2025_anual_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   └── vol_imp_mad_sec_2025_anual.html
+├── madrid_mes
+│   ├── bump_exp_mad_paises_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_mad_paises_2026_12.html
+│   ├── bump_exp_mad_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_exp_mad_sec_2026_12.html
+│   ├── bump_imp_mad_paises_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_mad_paises_2026_12.html
+│   ├── bump_imp_mad_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── bump_imp_mad_sec_2026_12.html
+│   ├── contrib_exp_mad_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_mad_pais_2026_12.html
+│   ├── contrib_exp_mad_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_exp_mad_sec_2026_12.html
+│   ├── contrib_imp_mad_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_mad_pais_2026_12.html
+│   ├── contrib_imp_mad_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── contrib_imp_mad_sec_2026_12.html
+│   ├── treemap_exp_mad_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_mad_pais_2026_12.html
+│   ├── treemap_exp_mad_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_exp_mad_sec_2026_12.html
+│   ├── treemap_imp_mad_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_mad_pais_2026_12.html
+│   ├── treemap_imp_mad_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── treemap_imp_mad_sec_2026_12.html
+│   ├── vol_exp_mad_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_mad_pais_2026_12.html
+│   ├── vol_exp_mad_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_exp_mad_sec_2026_12.html
+│   ├── vol_imp_mad_pais_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   ├── vol_imp_mad_pais_2026_12.html
+│   ├── vol_imp_mad_sec_2026_12_files
+│   │   ├── crosstalk-1.2.2
+│   │   │   ├── css
+│   │   │   │   └── crosstalk.min.css
+│   │   │   ├── js
+│   │   │   │   ├── crosstalk.js
+│   │   │   │   ├── crosstalk.js.map
+│   │   │   │   ├── crosstalk.min.js
+│   │   │   │   └── crosstalk.min.js.map
+│   │   │   └── scss
+│   │   │       └── crosstalk.scss
+│   │   ├── htmltools-fill-0.5.9
+│   │   │   └── fill.css
+│   │   ├── htmlwidgets-1.6.4
+│   │   │   └── htmlwidgets.js
+│   │   ├── jquery-3.5.1
+│   │   │   ├── jquery-AUTHORS.txt
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── plotly-binding-4.12.0
+│   │   │   └── plotly.js
+│   │   ├── plotly-htmlwidgets-css-2.25.2
+│   │   │   └── plotly-htmlwidgets.css
+│   │   ├── plotly-main-2.25.2
+│   │   │   └── plotly-latest.min.js
+│   │   └── typedarray-0.1
+│   │       └── typedarray.min.js
+│   └── vol_imp_mad_sec_2026_12.html
+└── madrid_ytm
+    ├── bump_exp_mad_paises_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── bump_exp_mad_paises_2026_ytm12.html
+    ├── bump_exp_mad_sec_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── bump_exp_mad_sec_2026_ytm12.html
+    ├── bump_imp_mad_paises_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── bump_imp_mad_paises_2026_ytm12.html
+    ├── bump_imp_mad_sec_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── bump_imp_mad_sec_2026_ytm12.html
+    ├── contrib_exp_mad_pais_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── contrib_exp_mad_pais_2026_ytm12.html
+    ├── contrib_exp_mad_sec_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── contrib_exp_mad_sec_2026_ytm12.html
+    ├── contrib_imp_mad_pais_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── contrib_imp_mad_pais_2026_ytm12.html
+    ├── contrib_imp_mad_sec_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── contrib_imp_mad_sec_2026_ytm12.html
+    ├── treemap_exp_mad_pais_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── treemap_exp_mad_pais_2026_ytm12.html
+    ├── treemap_exp_mad_sec_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── treemap_exp_mad_sec_2026_ytm12.html
+    ├── treemap_imp_mad_pais_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── treemap_imp_mad_pais_2026_ytm12.html
+    ├── treemap_imp_mad_sec_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── treemap_imp_mad_sec_2026_ytm12.html
+    ├── vol_exp_mad_pais_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── vol_exp_mad_pais_2026_ytm12.html
+    ├── vol_exp_mad_sec_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── vol_exp_mad_sec_2026_ytm12.html
+    ├── vol_imp_mad_pais_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    ├── vol_imp_mad_pais_2026_ytm12.html
+    ├── vol_imp_mad_sec_2026_ytm12_files
+    │   ├── crosstalk-1.2.2
+    │   │   ├── css
+    │   │   │   └── crosstalk.min.css
+    │   │   ├── js
+    │   │   │   ├── crosstalk.js
+    │   │   │   ├── crosstalk.js.map
+    │   │   │   ├── crosstalk.min.js
+    │   │   │   └── crosstalk.min.js.map
+    │   │   └── scss
+    │   │       └── crosstalk.scss
+    │   ├── htmltools-fill-0.5.9
+    │   │   └── fill.css
+    │   ├── htmlwidgets-1.6.4
+    │   │   └── htmlwidgets.js
+    │   ├── jquery-3.5.1
+    │   │   ├── jquery-AUTHORS.txt
+    │   │   ├── jquery.js
+    │   │   ├── jquery.min.js
+    │   │   └── jquery.min.map
+    │   ├── plotly-binding-4.12.0
+    │   │   └── plotly.js
+    │   ├── plotly-htmlwidgets-css-2.25.2
+    │   │   └── plotly-htmlwidgets.css
+    │   ├── plotly-main-2.25.2
+    │   │   └── plotly-latest.min.js
+    │   └── typedarray-0.1
+    │       └── typedarray.min.js
+    └── vol_imp_mad_sec_2026_ytm12.html
+
+1159 directories, 1632 files

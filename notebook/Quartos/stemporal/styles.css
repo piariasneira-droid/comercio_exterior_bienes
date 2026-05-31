@@ -1,0 +1,28 @@
+﻿/* styles.css */
+body.quarto-light, body.quarto-dark {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.quarto-container {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.main-container,
+#quarto-content,
+#quarto-document-content,
+main.content {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Para el contenedor del tema cosmo */
+.container-fluid {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+}

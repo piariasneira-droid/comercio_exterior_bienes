@@ -1,0 +1,2 @@
+RETICULATE_PYTHON = "./.pixi/envs/default/bin/python"
+RETICULATE_PYTHON_FALLBACK = "./.pixi/envs/default/bin/python"

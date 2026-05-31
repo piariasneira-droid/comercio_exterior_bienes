@@ -1,0 +1,700 @@
+---
+title: "Análisis Comercio Exterior de bienes de la C. de Madrid. Repercusiones"
+author: "S.G. de Análisis Económico"
+lang: es
+language: 
+  title-block-athor-single: "Autor"
+format:
+  html:
+    page-layout: full
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    self-contained: true
+    css: styles.css
+server: shiny
+---
+
+```{r setup}
+#| echo: false
+#| include: false
+
+# Carga de funciones auxiliares y del tema
+source("./Raux/procfunapptreemap.R")
+
+# Carga de librerías
+librerias <- c("arrow", "data.table", "dplyr", "DT", "httr", "lubridate", "openxlsx", "plotly", "readr", "shiny", "vroom")
+instala_carga_librerias(librerias)
+rm(librerias)
+
+#Parámetros
+local <- TRUE
+perdefecto <- 8L
+anofin <- 2025L
+anoini <-1995L
+factoreuros <- as.integer(1e6)
+factorkg <- as.integer(1e3)
+uneuros <- "mill. €"
+unekg <- "Tm"
+texeuros <- "millones de euros"
+texkg <- "toneladas métricas"
+nlineas <- 5L
+taricdefecto <- 0
+paisdefecto <- 0L
+decdefecto <- 1L
+flujodefecto <- 0L
+```
+
+```{r}
+#| include: false
+#| context: server
+#| label: carga_metadata
+
+if (local) {
+  # Carga desde rutas locales
+  df_taric <- cargar_taric("../../../data/raw/metadatos/TARIC.csv")
+  df_pais  <- cargar_pais("../../../data/metatratado/paises.xlsx")
+} else {
+  # Carga desde Google Drive
+  df_taric <- cargar_taric("https://drive.google.com/uc?export=download&id=14oy_QVc0jXgGZZTA_Ge5skYpzepQLefs")
+  df_pais  <- cargar_pais("https://docs.google.com/spreadsheets/d/1AJU1Sauw3puMVTrXZSNg7AL78nTp8nQ_/export?format=xlsx")
+}
+```
+
+```{r}
+#| include: false
+#| context: server
+#| label: server_filtros
+
+output$filtros_bar <- renderUI({
+  tagList(
+    wellPanel(
+      style = "background-color: #f8f9fa; padding: 5px; margin-bottom: 0px;",
+      
+      # TÍTULO Y DESCRIPCIÓN UNIFICADOS
+      h4("Filtros", style = "margin-top: 0px; margin-bottom: 5px; color: #2d3535; font-weight: bold;"),
+      
+      p("Selecciona los filtros a aplicar:", 
+        style = "margin-bottom: 15px; color: #666;"),
+      
+      # Primera fila: Región + Unidades + Flujo
+      div(
+        style = "display:flex; gap:20px; justify-content:space-between; align-items:end; margin-bottom: 15px;",
+        
+        # Región
+        div(
+          style = "flex:1;",
+          radioButtons("region", "Región:",
+                       choices = c("C. de Madrid" = "mad",
+                                   "España" = "esp"),
+                       selected = "mad",
+                       inline = TRUE)
+        ),
+        
+        # Unidades
+        div(
+          style = "flex:1;",
+          radioButtons("unidades", "Unidades:",
+                       choices = c("Euros" = "euros",
+                                   "Kilogramos" = "kg"),
+                       selected = "euros",
+                       inline = TRUE)
+        ),
+        
+        # Flujo
+        div(
+          style = "flex:1;",
+          radioButtons("flujo", "Flujo:",
+                       choices = c("Export." = 1L,
+                                   "Import." = 0L),
+                       selected = flujodefecto,
+                       inline = TRUE)
+        )
+      ),
+      
+      # Segunda fila: Años + Período + N° Líneas
+      div(
+        style = "display:flex; gap:20px; justify-content:space-between; align-items:end; margin-bottom: 15px;",
+        
+        # Años
+        div(
+          style = "flex:1;",
+          sliderInput("anio", 
+                      "Años:", 
+                      min = anoini, 
+                      max = anofin, 
+                      value = c(anoini, anofin),   
+                      step = 1,
+                      sep = "",
+                      width = "100%")
+        ),
+        
+        # Período
+        div(
+          style = "flex:1;",
+          selectInput("periodo", 
+                      "Período:",
+                      choices = periodos_choices,
+                      selected = perdefecto,
+                      width = "100%")
+        ),
+        
+        # N° Líneas
+        div(
+          style = "flex:1;",
+          sliderInput("n_lineas", 
+                      "N° Líneas:", 
+                      min = 4, 
+                      max = 15, 
+                      value = nlineas,   
+                      step = 1,
+                      width = "100%")
+        )
+      ),
+      
+      # Tercera fila: País + Producto + Botón Actualizar
+      div(
+        style = "display:flex; gap:20px; justify-content:space-between; align-items:end; margin-bottom: 15px;",
+        
+        # País
+        div(
+          style = "flex:1;",
+          textInput("pais_cod", 
+                    label = "Código del país:", 
+                    value = paisdefecto,        
+                    placeholder = "p.ej. 1",
+                    width = "100%")
+        ),
+        
+        # Producto (TARIC)
+        div(
+          style = "flex:1;",
+          textInput("producto", 
+                    label = "Código TARIC producto:", 
+                    value = taricdefecto,   
+                    placeholder = "p.ej. 27",
+                    width = "100%")
+        ),
+        
+        # Botón Actualizar
+        div(
+          style = "flex:1; text-align:center;",
+          actionButton("actualizar", "Actualizar", 
+                       icon = icon("refresh"), 
+                       class = "btn-primary",
+                       style = "width:100%; margin-top:5px;")
+        )
+      )
+    )
+  )
+})
+```
+
+```{r}
+#| include: false
+#| context: server
+#| label: parametros
+
+# Valores actualizar (ahora incluye todos los parámetros)
+valores <- eventReactive(input$actualizar, {
+  list(
+    # Parámetros
+    unidades = input$unidades,
+    region   = input$region,
+    flujo    = as.integer(input$flujo),                           
+    ano_ini  = as.integer(input$anio[1]),
+    ano_fin  = as.integer(input$anio[2]),
+    taric    = as.numeric(input$producto),              
+    pais     = as.integer(input$pais_cod),
+    per      = as.integer(input$periodo),
+    n_lineas = as.integer(input$n_lineas)
+  )
+}, ignoreNULL = FALSE)
+
+
+# Variables auxiliares calculadas directamente
+aux_vars <- reactive({
+  v <- valores()  
+  # Nombre del flujo
+  nombre_flujo <- if (v$flujo == 1L) {
+    "Exportaciones"
+  } else if (v$flujo == 0L) {
+    "Importaciones"
+  } else {
+    NA_character_
+  }
+  # Nombre región legible
+  nombre_region <- if (v$region == "mad") {
+    "C. de Madrid"
+  } else if (v$region == "esp") {
+    "España"
+  } else {
+    NA_character_
+  }
+  
+  # Nombre de TARIC si el código existe
+  nombre_taric <- if (!is.na(v$taric)) {
+    fila <- df_taric[codint_taric == v$taric]
+    if (nrow(fila) > 0) {
+      paste0(fila$cod_taric, " - ", fila$taric)
+    } else {
+      NA_character_
+    }
+  }
+  
+  # Nivel TARIC
+  nivel_taric <- if (!is.na(v$taric)) {
+    fila <- df_taric[codint_taric == v$taric]
+    if (nrow(fila) > 0) {
+      as.integer(fila$nivel_taric)
+    } else {
+      NA_integer_
+    }
+  } else {
+    NA_integer_
+  }
+  
+  # Paleta según flujo
+  paleta <- if (v$flujo == 1L) {
+    c(col1 = "#2d5532", col2 = "#b4d7b4", col3 = "#6f6f4e", col4 = "#ddd9c3")
+  } else if (v$flujo == 0L) {
+    c(col1 = "#2d3535", col2 = "#b4c7d7", col3 = "#4f6f8f", col4 = "#c3d9dd")
+  } else {
+    c(col1 = "#2d5532", col2 = "#b4d7b4", col3 = "#6f6f4e", col4 = "#ddd9c3")
+  }
+  
+  # Nombre país
+  nombre_pais <- if (!is.na(v$pais)) {
+    fila <- df_pais[cod_pais == v$pais]
+    if (nrow(fila) > 0) {
+      fila$pais
+    } else {
+      NA_character_
+    }
+  }
+  
+  # Meses según periodo seleccionado
+  meses <- obtener_meses_periodo(v$per)
+  
+  # Nombre variable
+  var <- if (v$unidades == "euros") {
+    "euros"
+  } else if (v$unidades == "kg") {
+    "kilogramos"
+  } else {
+    NA_character_
+  }
+  
+  varfactor <- if (v$unidades == "euros") {
+    factoreuros
+  } else if (v$unidades == "kg") {
+    factorkg
+  } else {
+    NA_integer_
+  }
+  
+  varud <- if (v$unidades == "euros") {
+    uneuros
+  } else if (v$unidades == "kg") {
+    unekg
+  } else {
+    NA_character_
+  }
+  
+  # Return de auxiliares ===
+  res <- list(
+    nombre_region    = nombre_region,
+    nombre_flujo     = nombre_flujo,
+    nombre_taric     = nombre_taric,
+    nivel_taric      = nivel_taric,
+    paleta           = paleta,
+    nombre_pais      = nombre_pais,
+    meses            = meses,
+    var              = var,
+    varfactor        = varfactor,
+    varud            = varud
+  )
+  
+  # Limpieza de memoria temporal
+  rm(v)
+  gc(verbose = FALSE)
+  
+  res
+})
+```
+
+```{r}
+#| include: true
+#| context: server
+#| label: carga_datos
+
+# Reactive que carga el dataframe base
+obtencion_data <- eventReactive(input$actualizar, {
+  v <- valores()
+  a <- aux_vars()
+  
+  # --- Selección dinámica de fuente de datos ---
+  if (local) {
+    # ----------- RUTAS LOCALES -----------
+    archivo <- switch(
+      paste(v$region, v$unidades, sep = "_"),
+        "mad_euros" = "../../../data/interim/madrid/madrid_euros_taric.parquet",
+        "esp_euros" = "../../../data/interim/espana/espana_euros_taric.parquet",
+        "mad_kg"    = "../../../data/interim/madrid/madrid_kg_taric.parquet",
+        "esp_kg"    = "../../../data/interim/espana/espana_kg_taric.parquet"
+    )
+    
+    cat("Conectando con archivo Parquet local:", archivo, "\n")
+    
+    datos_completos <- arrow::open_dataset(archivo) %>%
+      filter(
+        flujo == v$flujo,
+        año >= v$ano_ini,
+        año <= v$ano_fin,
+        cod_taric == v$taric | cod_taric == 0 | pais == v$pais | pais == 0L
+      ) %>%
+      select(-flujo) %>%
+      collect() %>%
+      as.data.table()
+    
+  } else {
+    # ----------- RUTAS DESDE GOOGLE DRIVE -----------
+    archivo <- switch(
+      paste(v$region, v$unidades, sep = "_"),
+      "mad_euros" = "https://drive.usercontent.google.com/download?id=18cRMaOD6KzO5lFTjagChRu1ZYFZcBPvr&export=download&confirm=t",
+      "esp_euros" = "https://drive.usercontent.google.com/download?id=1mE_oALhBNWZDBiU8gtwxDTrca8rc26TE&export=download&confirm=t",
+      "mad_kg"    = "https://drive.usercontent.google.com/download?id=11D6iE1sOtUuSq0Iqf4KClqIlxT7pXjUN&export=download&confirm=t",
+      "esp_kg"    = "https://drive.usercontent.google.com/download?id=1cic1h2BKBJk7Z5KSYphaulRZ6krbt0oE&export=download&confirm=t"
+    )
+    
+    cat("Conectando con Google Drive:", archivo, "\n")
+    
+    response <- httr::GET(archivo)
+    if (httr::status_code(response) != 200) {
+      stop("Error al descargar archivo desde Google Drive. Código:", httr::status_code(response))
+    }
+    
+    datos_completos <- arrow::read_parquet(httr::content(response, "raw")) %>%
+      as.data.table()
+    
+    # Filtrado posterior a la lectura
+    datos_completos <- datos_completos[
+      flujo == v$flujo &
+      año >= v$ano_ini &
+      año <= v$ano_fin &
+      (cod_taric == v$taric | cod_taric == 0L | pais == v$pais | pais == 0L)
+    ]
+    
+    datos_completos[, flujo := NULL]
+  }
+
+  cat("Datos cargados:", nrow(datos_completos), "filas\n\n")
+
+  #### Creación de subconjuntos ----
+  # SUBCONJUNTOS PRINCIPALES - Todos los meses
+  df_mes_tar <- datos_completos[cod_taric == v$taric & pais != 0L]
+  df_mes_paises <- datos_completos[pais == v$pais & cod_taric != 0L]
+  df_total_general <- datos_completos[cod_taric == 0 & pais == 0L]
+  df_total_taric <- datos_completos[cod_taric == v$taric & pais == 0L]
+  df_total_pais <- datos_completos[cod_taric == 0 & pais == v$pais]
+
+  # Merge de totales para df_mes_tar
+  df_mes_tar <- merge(
+    df_mes_tar,
+    df_total_general[, .(año, mes, total_general = get(a$var))],
+    by = c("año", "mes"),
+    all.x = TRUE
+  )
+  
+  df_mes_tar <- merge(
+    df_mes_tar,
+    df_total_taric[, .(año, mes, total_taric = get(a$var))],
+    by = c("año", "mes"),
+    all.x = TRUE
+  )
+
+  # Merge de totales para df_mes_paises
+  df_mes_paises <- merge(
+    df_mes_paises,
+    df_total_general[, .(año, mes, total_general = get(a$var))],
+    by = c("año", "mes"),
+    all.x = TRUE
+  )
+  
+  df_mes_paises <- merge(
+    df_mes_paises,
+    df_total_pais[, .(año, mes, total_pais = get(a$var))],
+    by = c("año", "mes"),
+    all.x = TRUE
+  )
+
+  # DATAFRAMES DE PERIODO (agrupados por año, sumando los meses del periodo)
+  df_periodo_tar <- df_mes_tar[mes %in% a$meses, 
+                               .(valor = sum(get(a$var), na.rm = TRUE),
+                                 total_general = sum(total_general, na.rm = TRUE),
+                                 total_taric = sum(total_taric, na.rm = TRUE)),
+                               by = .(año, pais, cod_taric)]
+
+  df_periodo_paises <- df_mes_paises[mes %in% a$meses,
+                                     .(valor = sum(get(a$var), na.rm = TRUE),
+                                       total_general = sum(total_general, na.rm = TRUE),
+                                       total_pais = sum(total_pais, na.rm = TRUE)),
+                                     by = .(año, pais, cod_taric)]
+
+  # Renombrar columna 'valor' con el nombre de la unidad
+  setnames(df_periodo_tar, "valor", a$var)
+  setnames(df_periodo_paises, "valor", a$var)
+
+  #### Calcular valores año anterior y métricas ----
+  
+  # Para df_mes_tar
+  if (nrow(df_mes_tar) > 0) {
+    setkey(df_mes_tar, pais, cod_taric, mes, año)
+    
+    # Crear tabla temporal con año siguiente para facilitar el join
+    dt_ant <- df_mes_tar[, .(pais, cod_taric, mes, 
+                             año_sig = año + 1L,
+                             valor_ant = get(a$var), 
+                             total_general_ant = total_general,
+                             total_taric_ant = total_taric)]
+    
+    # Join con año anterior
+    df_mes_tar[dt_ant, 
+               c(paste0(a$var, "_ant"), "total_general_ant", "total_taric_ant") :=
+                 .(i.valor_ant, i.total_general_ant, i.total_taric_ant),
+               on = .(pais, cod_taric, mes, año = año_sig)]
+    
+    # Reemplazar NAs con 0
+    cols_ant <- c(paste0(a$var, "_ant"), "total_general_ant", "total_taric_ant")
+    df_mes_tar[, (cols_ant) := lapply(.SD, function(x) fifelse(is.na(x), 0, x)), .SDcols = cols_ant]
+    
+    # Paso 1: Calcular diferencia, peso y tva
+    df_mes_tar[, `:=`(
+      diferencia = get(a$var) - get(paste0(a$var, "_ant")),
+      peso = fifelse(total_general > 0, get(a$var) / total_general * 100, 0),
+      tva = fifelse(get(paste0(a$var, "_ant")) > 0,
+                    (get(a$var) - get(paste0(a$var, "_ant"))) / get(paste0(a$var, "_ant")) * 100,
+                    NA_real_)
+    )]
+    
+    # Paso 2: Calcular contribución usando diferencia ya creada
+    df_mes_tar[, contribucion := fifelse(total_general_ant > 0,
+                                         diferencia / total_general_ant * 100,
+                                         0)]
+  }
+  
+  # Para df_periodo_tar
+  if (nrow(df_periodo_tar) > 0) {
+    setkey(df_periodo_tar, pais, cod_taric, año)
+    
+    dt_ant <- df_periodo_tar[, .(pais, cod_taric, 
+                                 año_sig = año + 1L,
+                                 valor_ant = get(a$var), 
+                                 total_general_ant = total_general,
+                                 total_taric_ant = total_taric)]
+    
+    df_periodo_tar[dt_ant, 
+                   c(paste0(a$var, "_ant"), "total_general_ant", "total_taric_ant") :=
+                     .(i.valor_ant, i.total_general_ant, i.total_taric_ant),
+                   on = .(pais, cod_taric, año = año_sig)]
+    
+    cols_ant <- c(paste0(a$var, "_ant"), "total_general_ant", "total_taric_ant")
+    df_periodo_tar[, (cols_ant) := lapply(.SD, function(x) fifelse(is.na(x), 0, x)), .SDcols = cols_ant]
+    
+    # Paso 1: Calcular diferencia, peso y tva
+    df_periodo_tar[, `:=`(
+      diferencia = get(a$var) - get(paste0(a$var, "_ant")),
+      peso = fifelse(total_general > 0, get(a$var) / total_general * 100, 0),
+      tva = fifelse(get(paste0(a$var, "_ant")) > 0, 
+                    (get(a$var) - get(paste0(a$var, "_ant"))) / get(paste0(a$var, "_ant")) * 100, 
+                    NA_real_)
+    )]
+    
+    # Paso 2: Calcular contribución
+    df_periodo_tar[, contribucion := fifelse(total_general_ant > 0, 
+                                             diferencia / total_general_ant * 100, 
+                                             0)]
+  }
+  
+  # Para df_periodo_paises
+  if (nrow(df_periodo_paises) > 0) {
+    setkey(df_periodo_paises, pais, cod_taric, año)
+    
+    dt_ant <- df_periodo_paises[, .(pais, cod_taric, 
+                                    año_sig = año + 1L,
+                                    valor_ant = get(a$var), 
+                                    total_general_ant = total_general,
+                                    total_pais_ant = total_pais)]
+    
+    df_periodo_paises[dt_ant, 
+                      c(paste0(a$var, "_ant"), "total_general_ant", "total_pais_ant") :=
+                        .(i.valor_ant, i.total_general_ant, i.total_pais_ant),
+                      on = .(pais, cod_taric, año = año_sig)]
+    
+    cols_ant <- c(paste0(a$var, "_ant"), "total_general_ant", "total_pais_ant")
+    df_periodo_paises[, (cols_ant) := lapply(.SD, function(x) fifelse(is.na(x), 0, x)), .SDcols = cols_ant]
+    
+    # Paso 1: Calcular diferencia, peso y tva
+    df_periodo_paises[, `:=`(
+      diferencia = get(a$var) - get(paste0(a$var, "_ant")),
+      peso = fifelse(total_general > 0, get(a$var) / total_general * 100, 0),
+      tva = fifelse(get(paste0(a$var, "_ant")) > 0, 
+                    (get(a$var) - get(paste0(a$var, "_ant"))) / get(paste0(a$var, "_ant")) * 100, 
+                    NA_real_)
+    )]
+    
+    # Paso 2: Calcular contribución
+    df_periodo_paises[, contribucion := fifelse(total_general_ant > 0, 
+                                                diferencia / total_general_ant * 100, 
+                                                0)]
+  }
+  
+  cat("Métricas calculadas (diferencia, tva, contribución, peso)\n\n")
+  
+  # Cruces con catálogos
+  df_mes_tar         <- cruce_taric_pais(df_mes_tar, df_taric, df_pais)
+  df_periodo_tar     <- cruce_taric_pais(df_periodo_tar, df_taric, df_pais)
+  df_mes_paises      <- cruce_taric_pais(df_mes_paises, df_taric, df_pais)
+  df_periodo_paises  <- cruce_taric_pais(df_periodo_paises, df_taric, df_pais)
+  
+  # Limpieza de memoria
+  rm(datos_completos, df_total_general, df_total_taric, df_total_pais)
+  gc(verbose = FALSE)
+
+  return(list(
+    df_mes_tar         = df_mes_tar,
+    df_periodo_tar     = df_periodo_tar,
+    df_mes_paises      = df_mes_paises,
+    df_periodo_paises  = df_periodo_paises
+  ))
+}, ignoreNULL = FALSE)
+```
+
+```{r}
+#| include: false
+#| context: server
+#| eval: false
+#| label: valores_debug
+
+output$debug_valores <- renderPrint({
+  str(valores())
+})
+
+output$debug_aux <- renderPrint({
+  str(aux_vars()) 
+})
+```
+
+```{r}
+#| include: false
+#| context: server
+#| eval: false
+#| label: dataframe
+
+output$dataframe <- renderPrint({
+  cat("Estructura del dataframe (clase de cada columna):\n")
+  str(obtencion_data()) 
+
+  cat("\nPrimeras filas del dataframe:\n")
+  print(head(obtencion_data(), 20))
+  
+})
+```
+
+```{r}
+#| include: false
+#| context: server
+#| eval: true
+#| label: plots
+
+output$plot_treemap_paises <-renderPlotly({
+  a <- aux_vars()
+  v <- valores()
+  
+  plot <- grafica_treemap_taric(
+    dt = obtencion_data()$df_periodo_paises[año == v$ano_fin], 
+    vars = v, 
+    aux = a, 
+    tipo_plot = "treemap"
+  )
+})
+
+output$plot_treemap_tarics <-renderPlotly({
+  a <- aux_vars()
+  v <- valores()
+  
+  plot <- grafica_treemap_paises(
+    dt = obtencion_data()$df_periodo_tar[año == v$ano_fin], 
+    vars = v, 
+    aux = a, 
+    tipo_plot = "treemap"
+  )
+})
+```
+
+```{r}
+#| include: false
+#| context: server
+#| eval: true
+#| label: textos
+
+output$taric_texto <- renderUI({
+  v   <- valores()
+  aux <- aux_vars()
+  meses_txt <- if (!is.null(aux$meses)) paste(aux$meses, collapse = ", ") else NA_character_
+
+  tags$p(
+    strong("TARIC a analizar: "),
+    span(v$taric, style = "color:#2d3535; font-weight:bold;"),
+    br(),
+    strong("Flujo: "), span(aux$nombre_flujo, style = "color:#2d3535;"),
+    br(),
+    strong("Región: "), span(aux$nombre_region, style = "color:#2d3535;"),
+    br(),
+    strong("Meses incluidos: "), span(meses_txt, style = "color:#2d3535;")
+  )
+})
+
+output$pais_texto <- renderUI({
+  v   <- valores()
+  aux <- aux_vars()
+  meses_txt <- if (!is.null(aux$meses)) paste(aux$meses, collapse = ", ") else NA_character_
+
+  tags$p(
+    strong("País a analizar: "),
+    span(aux$nombre_pais %||% v$pais, style = "color:#2d3535; font-weight:bold;"),
+    br(),
+    strong("Flujo: "), span(aux$nombre_flujo, style = "color:#2d3535;"),
+    br(),
+    strong("Región: "), span(aux$nombre_region, style = "color:#2d3535;"),
+    br(),
+    strong("Meses incluidos: "), span(meses_txt, style = "color:#2d3535;")
+  )
+})
+
+```
+
+```{r}
+tagList(
+  uiOutput("filtros_bar"),
+  
+  # Debug
+  # verbatimTextOutput("debug_valores"),
+  # verbatimTextOutput("debug_aux"),
+  verbatimTextOutput("dataframe"),
+  
+  # ========== TÍTULO PRINCIPAL ==========
+  h2("Treemaps", style = "margin-top: 30px; margin-bottom: 20px; color: #2d3535; border-bottom: 2px solid #2d3535; padding-bottom: 10px;"),
+  
+  # ========== ANÁLISIS PAÍS POR TARÍC ==========
+  h3("Anlísis del país por TARICS ", style = "margin-top: 30px; margin-bottom: 15px; color: #4f6f8f;"),
+  uiOutput("pais_texto"),
+  plotlyOutput("plot_treemap_paises"),
+  
+    # ========== ANÁLISIS POR TARIC ==========
+  h3("Análisis del producto por países", style = "margin-top: 30px; margin-bottom: 15px; color: #4f6f8f;"),
+  uiOutput("taric_texto"),
+  plotlyOutput("plot_treemap_tarics")
+)
+```
