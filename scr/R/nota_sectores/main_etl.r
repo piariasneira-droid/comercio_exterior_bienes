@@ -324,6 +324,30 @@ df_evol_countryfull_anopas <- .paises_evol_f(
 paramets$anho <- paramets$anho + 1L
 paramets$mes  <- paux_mes
 
+# Dataframes plots contribuciones datacomex ----
+df_contrib_sec_exp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull,
+  para       = paramets,
+  totalesf   = totalesanho,    
+  flujo      = "exp",
+  region     = "esp",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_imp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull,
+  para       = paramets,
+  totalesf   = totalesanho,    
+  flujo      = "imp",
+  region     = "esp",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+
 # Salidas Excel ----
 ## Nombres de archivo ----
 nombre_totales   <- sprintf("evolucion_anual_%d_%d_%02d.xlsx",        paramets$ano_ini, paramets$anho, paramets$mes)

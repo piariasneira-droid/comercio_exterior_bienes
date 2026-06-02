@@ -13,6 +13,10 @@
   # Parámetros y utilidades
   "paramets",
   ".conservar",
+  "dsmad",
+  "dsesp",
+  "meta_sec",
+  "meta_pais",
   
   # Datos de main_etl 
   "df_sectores",
@@ -27,6 +31,7 @@
   "df_ccaa_amp",
   "lista_esp",
   "lista_mad",
+  "totalesanho",
   
   # Procesamiento acumulado
   "df_sectores_acu",
@@ -176,13 +181,41 @@
   "bump_imp_esp_paises_anopas",
   "bump_imp_esp_sec_anopas",
   
+  # Contribuciones datacomex ----
+  "df_contrib_sec_exp_informe",
+  "df_contrib_sec_imp_informe",
+  "df_contrib_paises_exp_informe",
+  "df_contrib_paises_imp_informe",
+  
   # Tablas 
   "ft_ccaa",
   
   # Textos
   "mes_label",
   "fecha_hoy",
-  "custom_theme"
+  "custom_theme",
+  
+  # Tablas GT datacomex — main_tablas ----
+  "tbl_sec_mad",
+  "tbl_sec_esp",
+  "tbl_pais_mad",
+  "tbl_pais_esp",
+  
+  # Tablas GT evolución — main_tablas ----
+  "tbl_evol_sec_mad_exp",
+  "tbl_evol_sec_mad_imp",
+  "tbl_evol_sec_esp_exp",
+  "tbl_evol_sec_esp_imp",
+  "tbl_evol_pais_mad_exp",
+  "tbl_evol_pais_mad_imp",
+  "tbl_evol_pais_esp_exp",
+  "tbl_evol_pais_esp_imp",
+  
+  # Tablas GT evolución porcentual — main_tablas ----
+  "tbl_evol_pct_sec_exp",
+  "tbl_evol_pct_sec_imp",
+  "tbl_evol_pct_pais_exp",
+  "tbl_evol_pct_pais_imp"
 )
 
 

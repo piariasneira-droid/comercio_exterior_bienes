@@ -1,5 +1,8 @@
 # Auxiliar ----
 
+## Operador %||% (si no está ya definido en el entorno) ----
+`%||%` <- function(a, b) if (!is.null(a)) a else b
+
 ## Guardado HTML con librería compartida por subcarpeta ----
 .guardar_html <- function(fig, ruta, libdir = "lib") {
   htmlwidgets::saveWidget(
@@ -9,6 +12,65 @@
     libdir        = libdir
   )
   invisible(ruta)
+}
+
+## Conversión HTML → PNG mediante screenshot (webshot2) ----
+.html_a_png <- function(ruta_html,
+                        vwidth     = NULL,
+                        vheight    = NULL,
+                        delay      = NULL,
+                        zoom       = NULL,
+                        dpi        = 300,      
+                        parametros = list(
+                          ws_width_cm  = 18,   
+                          ws_height_cm = 8,    
+                          ws_delay     = 1,
+                          ws_zoom      = NULL, 
+                          path_outp    = "./data/output/nota_sec_2026_03/plots"
+                        )) {
+  
+  # 1. Base screen DPI vs Target DPI
+  base_dpi  <- 96
+  width_cm  <- parametros$ws_width_cm  %||% 18
+  height_cm <- parametros$ws_height_cm %||% 8
+  
+  # 2. Calculate LOGICAL viewport (prevents layout distortion)
+  vwidth  <- vwidth  %||% round((width_cm / 2.54) * base_dpi)
+  vheight <- vheight %||% round((height_cm / 2.54) * base_dpi)
+  
+  # 3. Calculate ZOOM factor for crisp 300 DPI print quality
+  zoom    <- zoom %||% parametros$ws_zoom %||% (dpi / base_dpi)
+  delay   <- delay %||% parametros$ws_delay %||% 2
+  
+  # 4. Clean Path Assembly
+  nombre_html <- basename(ruta_html)
+  nombre_png  <- sub("\\.html$", ".png", nombre_html, ignore.case = TRUE)
+  ruta_png    <- file.path(parametros$path_outp, nombre_png)
+  
+  # 5. Inject CSS to hide the Plotly modebar
+  html_lines <- readLines(ruta_html, warn = FALSE)
+  css_hide_modebar <- "<style>.modebar { display: none !important; }</style>"
+  
+  # FIX: Create the temp file in the SAME directory to preserve relative paths (.js, .css)
+  directorio_origen <- dirname(ruta_html)
+  ruta_html_temp    <- file.path(directorio_origen, paste0("temp_hide_bar_", nombre_html))
+  
+  writeLines(c(html_lines, css_hide_modebar), ruta_html_temp)
+  
+  # 6. Execute Webshot on the patched file
+  webshot2::webshot(
+    url     = normalizePath(ruta_html_temp, mustWork = FALSE),
+    file    = ruta_png,
+    vwidth  = vwidth,
+    vheight = vheight,
+    delay   = delay,
+    zoom    = zoom
+  )
+  
+  # 7. Clean up the temporary file immediately
+  unlink(ruta_html_temp)
+  
+  invisible(ruta_png)
 }
 
 ## Formato porcentaje desde ratio (×100) — complementa funciones_text.r ----
@@ -88,7 +150,7 @@
   
   if (nrow(df) == 0) stop("No hay datos para representar con los parámetros indicados.")
   
-  niveles_presentes <- sort(unique(df$niv))
+  niveles_presentes <<- sort(unique(df$niv))
   
   if (length(niveles_presentes) == 1) {
     df[, subgroup := NA_character_]
@@ -130,11 +192,14 @@
     titulo <- paste0(flujo_text, " ", territorio_text, " ", tipo_text)
   }
   
+  df_plot <<- df
+  
   p <- ggplot(df,
               aes(area     = valor,
                   fill     = contrib,
                   label    = label_plot,
                   subgroup = subgroup)) +
+    
     treemapify::geom_treemap(colour = "white", size = 0.8) +
     treemapify::geom_treemap_subgroup_border(colour = "grey30", size = 2) +
     treemapify::geom_treemap_subgroup_text(
@@ -164,14 +229,15 @@
       labels   = function(x) paste0(
         formatC(round(x * 100, dec_per), format = "f", digits = dec_per, decimal.mark = ","),
         " p.p."
-      ),
-      guide    = guide_colorbar(
-        title.position = "top",
-        title.hjust    = 0.5,
-        barwidth       = unit(1, "npc"),
-        barheight      = unit(0.3, "cm"),
-        ticks          = TRUE
       )
+      # ,
+      # guide    = guide_colorbar(
+      #   title.position = "top",
+      #   title.hjust    = 0.5,
+      #   barwidth       = unit(1, "npc"),
+      #   barheight      = unit(0.3, "cm"),
+      #   ticks          = TRUE
+      # )
     ) +
     labs(
       title = titulo
