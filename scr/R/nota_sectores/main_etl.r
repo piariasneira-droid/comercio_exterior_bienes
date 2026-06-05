@@ -122,6 +122,101 @@ df_evol_countryfull <- .paises_evol_f(
   parametros = paramets
 )
 
+## Contribuciones datacomex ----
+### Madrid ----
+df_contrib_paises_exp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull,
+  para       = paramets,
+  totalesf   = totalesanho,
+  flujo      = "exp",
+  region     = "mad",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_paises_imp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull,
+  para       = paramets,
+  totalesf   = totalesanho,
+  flujo      = "imp",
+  region     = "mad",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_exp_informe <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho,
+  flujo      = "exp",
+  region     = "mad",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_imp_informe <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho,
+  flujo      = "imp",
+  region     = "mad",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+### España ----
+df_contrib_paises_exp_informe_esp <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull,
+  para       = paramets,
+  totalesf   = totalesanho,
+  flujo      = "exp",
+  region     = "esp",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_paises_imp_informe_esp <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull,
+  para       = paramets,
+  totalesf   = totalesanho,
+  flujo      = "imp",
+  region     = "esp",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_exp_informe_esp <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho,
+  flujo      = "exp",
+  region     = "esp",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_imp_informe_esp <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho,
+  flujo      = "imp",
+  region     = "esp",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
 # Procesamiento acumulado ----
 paux_mes <- paramets$mes
 paramets$mes <- 1:max(paux_mes)
@@ -219,6 +314,101 @@ df_evol_countryfull_acu <- .paises_evol_f(
   ds_esp     = dsesp,
   df_paises  = meta_pais,
   parametros = paramets
+)
+
+## Contribuciones datacomex ----
+### Madrid ----
+df_contrib_paises_exp_informe_acu <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull_acu,
+  para       = paramets,
+  totalesf   = totalesanho_acu,
+  flujo      = "exp",
+  region     = "mad",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_paises_imp_informe_acu <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull_acu,
+  para       = paramets,
+  totalesf   = totalesanho_acu,
+  flujo      = "imp",
+  region     = "mad",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_exp_informe_acu <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores_acu[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho_acu,
+  flujo      = "exp",
+  region     = "mad",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_imp_informe_acu <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores_acu[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho_acu,
+  flujo      = "imp",
+  region     = "mad",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+### España ----
+df_contrib_paises_exp_informe_esp_acu <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull_acu,
+  para       = paramets,
+  totalesf   = totalesanho_acu,
+  flujo      = "exp",
+  region     = "esp",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_paises_imp_informe_esp_acu <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull_acu,
+  para       = paramets,
+  totalesf   = totalesanho_acu,
+  flujo      = "imp",
+  region     = "esp",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_exp_informe_esp_acu <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores_acu[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho_acu,
+  flujo      = "exp",
+  region     = "esp",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_imp_informe_esp_acu <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores_acu[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho_acu,
+  flujo      = "imp",
+  region     = "esp",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
 )
 
 # Procesamiento año pasado ----
@@ -320,15 +510,59 @@ df_evol_countryfull_anopas <- .paises_evol_f(
   parametros = paramets
 )
 
-# Restaurar paramets al estado original ----
-paramets$anho <- paramets$anho + 1L
-paramets$mes  <- paux_mes
-
-# Dataframes plots contribuciones datacomex ----
-df_contrib_sec_exp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
-  df         = df_evol_countryfull,
+## Contribuciones datacomex ----
+### Madrid ----
+df_contrib_paises_exp_informe_anopas <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull_anopas,
   para       = paramets,
-  totalesf   = totalesanho,    
+  totalesf   = totalesanho_anopas,
+  flujo      = "exp",
+  region     = "mad",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_paises_imp_informe_anopas <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull_anopas,
+  para       = paramets,
+  totalesf   = totalesanho_anopas,
+  flujo      = "imp",
+  region     = "mad",
+  meta       = meta_sec,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_exp_informe_anopas <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores_anopas[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho_anopas,
+  flujo      = "exp",
+  region     = "mad",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_imp_informe_anopas <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores_anopas[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho_anopas,
+  flujo      = "imp",
+  region     = "mad",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+### España ----
+df_contrib_paises_exp_informe_esp_anopas <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull_anopas,
+  para       = paramets,
+  totalesf   = totalesanho_anopas,
   flujo      = "exp",
   region     = "esp",
   meta       = meta_sec,
@@ -336,10 +570,10 @@ df_contrib_sec_exp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
   dss_esp    = dsesp
 )
 
-df_contrib_sec_imp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
-  df         = df_evol_countryfull,
+df_contrib_paises_imp_informe_esp_anopas <- .df_plot_barras_contribucion_sectores_datacomex(
+  df         = df_evol_countryfull_anopas,
   para       = paramets,
-  totalesf   = totalesanho,    
+  totalesf   = totalesanho_anopas,
   flujo      = "imp",
   region     = "esp",
   meta       = meta_sec,
@@ -347,6 +581,33 @@ df_contrib_sec_imp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
   dss_esp    = dsesp
 )
 
+df_contrib_sec_exp_informe_esp_anopas <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores_anopas[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho_anopas,
+  flujo      = "exp",
+  region     = "esp",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+df_contrib_sec_imp_informe_esp_anopas <- .df_plot_barras_contribucion_paises_datacomex(
+  df         = df_sectores_anopas[!orden %in% paramets$fil_sectores_plot],
+  para       = paramets,
+  totalesf   = totalesanho_anopas,
+  flujo      = "imp",
+  region     = "esp",
+  metas      = meta_sec,
+  metap      = meta_pais,
+  dss_mad    = dsmad,
+  dss_esp    = dsesp
+)
+
+# Restaurar paramets al estado original ----
+paramets$anho <- paramets$anho + 1L
+paramets$mes  <- paux_mes
 
 # Salidas Excel ----
 ## Nombres de archivo ----

@@ -13,7 +13,7 @@ htmls/
 # =========================================================
 *.csv
 *.7z
-*.rar 
+*.rar
 *.zip
 *.parquet
 *.xlsx
@@ -62,7 +62,7 @@ Thumbs.db
 # =========================================================
 # 5. EXCEPCIONES: Archivos y directorios forzados a incluirse
 # =========================================================
-# Asegura que carpetas clave y archivos de código no se ignoren 
+# Asegura que carpetas clave y archivos de código no se ignoren
 # accidentalmente si cayeran en reglas anteriores.
 !scr/
 !src/
@@ -79,3 +79,5 @@ Thumbs.db
 !*.sh
 !*.css
 !*.Rproj
+/.quarto/
+**/*.quarto_ipynb

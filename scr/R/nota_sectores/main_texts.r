@@ -1,5 +1,4 @@
 # Environment ----
-# source("./scr/R/nota_sectores/main_etl.r")
 source("./scr/R/nota_sectores/procfun/funciones_text.r")
 
 # Rutas salida ----
@@ -29,3 +28,18 @@ for (path in all_paths) {
 # Labels ----
 mes_label <- stringr::str_to_sentence(.build_period_labels(paramets))[1]
 fecha_hoy <- format(Sys.Date(), "%d de %B de %Y")
+
+# Subcarpetas de salida ----
+.subdirs_html <- c(
+  "madrid_mes", "madrid_ytm", "madrid_anopasado",
+  "espana_mes", "espana_ytm", "espana_anopasado"
+)
+invisible(lapply(.subdirs_html, function(d) {
+  p <- file.path(paramets$path_outh, d)
+  if (!dir.exists(p)) dir.create(p, recursive = TRUE, showWarnings = FALSE)
+}))
+
+# Sufijos de archivo ----
+sufijo_mes    <- sprintf("%d_%02d",  paramets$anho, paramets$mes)
+sufijo_ytm    <- sprintf("%d_ytm%02d", paramets$anho, paramets$mes)
+sufijo_anopas <- sprintf("%d_anual", paramets$anho - 1L)

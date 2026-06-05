@@ -43,6 +43,42 @@
   "df_evol_secfull_acu",
   "df_evol_countryfull_acu",
   
+  # Procesamiento contribuciones datacomex
+  "df_contrib_sec_exp_informe", 
+  "df_contrib_sec_imp_informe", 
+  "df_contrib_paises_exp_informe", 
+  "df_contrib_paises_imp_informe", 
+  
+  # Procesamiento contribuciones datacomex - España mes
+  "df_contrib_sec_exp_informe_esp",
+  "df_contrib_sec_imp_informe_esp",
+  "df_contrib_paises_exp_informe_esp",
+  "df_contrib_paises_imp_informe_esp",
+  
+  # Procesamiento contribuciones datacomex - Madrid acumulado
+  "df_contrib_sec_exp_informe_acu",
+  "df_contrib_sec_imp_informe_acu",
+  "df_contrib_paises_exp_informe_acu",
+  "df_contrib_paises_imp_informe_acu",
+  
+  # Procesamiento contribuciones datacomex - España acumulado
+  "df_contrib_sec_exp_informe_esp_acu",
+  "df_contrib_sec_imp_informe_esp_acu",
+  "df_contrib_paises_exp_informe_esp_acu",
+  "df_contrib_paises_imp_informe_esp_acu",
+  
+  # Procesamiento contribuciones datacomex - Madrid año pasado
+  "df_contrib_sec_exp_informe_anopas",
+  "df_contrib_sec_imp_informe_anopas",
+  "df_contrib_paises_exp_informe_anopas",
+  "df_contrib_paises_imp_informe_anopas",
+  
+  # Procesamiento contribuciones datacomex - España año pasado
+  "df_contrib_sec_exp_informe_esp_anopas",
+  "df_contrib_sec_imp_informe_esp_anopas",
+  "df_contrib_paises_exp_informe_esp_anopas",
+  "df_contrib_paises_imp_informe_esp_anopas",
+  
   # Procesamiento año pasado
   "df_sectores_anopas",
   "df_paises_anopas",
@@ -194,6 +230,9 @@
   "mes_label",
   "fecha_hoy",
   "custom_theme",
+  "sufijo_mes",
+  "sufijo_ytm",
+  "sufijo_anopas",
   
   # Tablas GT datacomex — main_tablas ----
   "tbl_sec_mad",

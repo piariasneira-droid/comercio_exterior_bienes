@@ -30,7 +30,8 @@ paramets <- list(
   flagmadanop           = TRUE,
   flagespanop           = TRUE,
   n_subsec_plotpais     = 3L,
-  fil_sectores_plot     = c(1, 11, 15, 18, 24, 33, 34, 37, 40, 45, 50, 53, 58, 59, 65, 66),
+  n_paises_plotsectores = 4L,
+  fil_sectores_plot     = c(1, 11, 15, 18, 24, 33, 34, 37, 40, 45, 50, 53, 58, 59, 64, 65, 66),
   colpal1               = "#2d5532",
   colpal2               = "#b4d7b4",
   colpal3               = "#2d5532",
@@ -57,6 +58,8 @@ paramets <- list(
   mh                    = 0.3,
   ws_width_cm           = 18,
   ws_height_cm          = 8,
+  ws_width_cm_alt       = 10,
+  ws_height_cm_alt      = 8,
   
   ## Tablas gt — paleta de colores ----
   gt_col_heading_bg     = "#2d5532",   # fondo cabecera (título de tabla)
