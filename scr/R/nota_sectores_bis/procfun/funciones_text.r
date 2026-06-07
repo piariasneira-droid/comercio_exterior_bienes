@@ -15,8 +15,10 @@
   ".conservar",
   "dsmad",
   "dsesp",
+  "dsmadt",
   "meta_sec",
   "meta_pais",
+  "meta_taric",
   
   # Datos de main_etl 
   "df_sectores",
@@ -83,6 +85,12 @@
   "df_contrib_sec_imp_informe_esp_anopas",
   "df_contrib_paises_exp_informe_esp_anopas",
   "df_contrib_paises_imp_informe_esp_anopas",
+  
+  # Pares contribuciones
+  "df_contrib_paises_sec_exp",
+  "df_contrib_paises_sec_imp",
+  "df_contrib_paises_taric_exp",
+  "df_contrib_paises_taric_imp",
   
   # Procesamiento año pasado
   "df_sectores_anopas",

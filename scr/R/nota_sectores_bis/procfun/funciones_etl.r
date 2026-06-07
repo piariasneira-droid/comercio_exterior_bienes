@@ -163,6 +163,140 @@
   openxlsx::saveWorkbook(wb, file_path, overwrite = TRUE)
 }
 
+.cargar_taric <- function(path) {
+  # Leer el fichero con vroom
+  df_taric <- vroom::vroom(
+    file       = path,
+    delim      = "\t",
+    col_names  = TRUE,
+    locale     = vroom::locale(encoding = "UTF-16LE"),
+    col_types  = vroom::cols(.default = vroom::col_character())
+  )
+  
+  # Convertir a data.table
+  dt_taric <- data.table::as.data.table(df_taric)
+  
+  # Transformaciones
+  dt_taric[, nivel_taric := readr::parse_integer(nivel_taric, na = c("", "NA"))]
+  dt_taric[, codint_taric := as.numeric(cod_taric)]
+  dt_taric[codint_taric == as.numeric(0), codint_taric := NA]
+  
+  # Filtrar filas: eliminar cod_taric que empiezan con "00" y codint_taric NA
+  dt_taric <- dt_taric[substr(cod_taric, 1, 2) != "00" & !is.na(codint_taric)]
+  
+  # Fila TOTAL
+  fila_total <- data.table::data.table(
+    cod_taric    = "0",
+    nivel_taric  = 0L,
+    taric        = "TOTAL",
+    codint_taric = as.numeric(0)
+  )
+  
+  # Combinar todo
+  resultado <- data.table::rbindlist(list(fila_total, dt_taric), use.names = TRUE, fill = TRUE)
+  resultado <- .anade_padres_dt(resultado)
+  
+  return(resultado)
+}
+
+.anade_padres_dt <- function(dt) {
+  dt[, longitud := nchar(cod_taric)]
+  
+  # Asignar códigos padres solo si cod_taric ≠ "0"
+  dt[, Capítulo := fifelse(
+    cod_taric == "0", NA_character_,
+    fifelse(longitud > 2, substr(cod_taric, 1, 2), NA_character_)
+  )]
+  
+  dt[, Partida := fifelse(
+    cod_taric == "0", NA_character_,
+    fifelse(longitud > 4, substr(cod_taric, 1, 4), NA_character_)
+  )]
+  
+  dt[, Subpartida := fifelse(
+    cod_taric == "0", NA_character_,
+    fifelse(longitud > 6, substr(cod_taric, 1, 6), NA_character_)
+  )]
+  
+  dt[, NC := fifelse(
+    cod_taric == "0", NA_character_,
+    fifelse(longitud > 8, substr(cod_taric, 1, 8), NA_character_)
+  )]
+  
+  dt[, longitud := NULL]
+  
+  # Crear tabla lookup con código -> descripción
+  lookup <- unique(dt[, .(cod_taric, etiqueta = paste0(cod_taric, " - ", taric))])
+  setkey(lookup, cod_taric)
+  
+  # Asignar descripciones concatenadas
+  dt[, Tar := lookup[cod_taric, etiqueta, on = "cod_taric"]]
+  dt[, Cap := lookup[Capítulo, etiqueta, on = "cod_taric"]]
+  dt[, Par := lookup[Partida, etiqueta, on = "cod_taric"]]
+  dt[, Sub := lookup[Subpartida, etiqueta, on = "cod_taric"]]
+  dt[, N := lookup[NC, etiqueta, on = "cod_taric"]]
+  
+  return(dt)
+}
+
+.top_bottom_rep <- function(df, n = 1000L, flujo = "exp") {
+  # Ordenar por 'dif' de mayor a menor y extraer top/bottom
+  df_ord <- df[order(-dif)]
+  res <- rbind(head(df_ord, n), tail(df_ord, n))
+  
+  # Definir el término del flujo (exportaciones o importaciones)
+  flujo_limpio <- tolower(trimws(flujo))
+  txt_flujo <- ifelse(grepl("^exp", flujo_limpio), "exportaciones", "importaciones")
+  
+  # Determinar columna de texto y tipo de clasificación
+  # Evaluamos ambas variantes: 'codconnombre' (tu df real) y 'cod_con_nombre'
+  if ("codconnombre" %in% names(res) || "cod_con_nombre" %in% names(res)) {
+    # Clasificación sectorial (incluye nivel 0 como total)
+    tipo_concepto <- fcase(
+      res$niv_sec == 0, "total",
+      res$niv_sec == 1, "sector",
+      default = "subsector"
+    )
+    # Asignamos la columna que realmente exista en el df
+    concepto <- if ("codconnombre" %in% names(res)) res$codconnombre else res$cod_con_nombre
+    
+  } else if ("Tar" %in% names(res)) {
+    # Clasificación por nivel TARIC
+    tipo_concepto <- fcase(
+      res$nivel_taric == 0, "total",
+      res$nivel_taric == 1, "capítulo",
+      res$nivel_taric == 2, "partida",
+      res$nivel_taric == 3, "subpartida",
+      res$nivel_taric == 4, "nomenclatura combinada",
+      res$nivel_taric == 5, "arancel",
+      default = "concepto"
+    )
+    concepto <- res$Tar
+  } else {
+    stop("El dataframe no contiene las columnas necesarias ('codconnombre', 'cod_con_nombre' o 'Tar').")
+  }
+  
+  # Determinar el sentido del cambio de forma natural
+  verbo_cambio <- ifelse(res$dif >= 0, "un incremento", "una disminución")
+  
+  # Construir la columna 'texto' utilizando tus funciones de formato
+  res[, texto := sprintf(
+    "El volumen de las %s del %s %s al mercado %s ha pasado de %s a %s millones de euros, lo que supone %s de %s millones de euros con una tva de %s%% y aporta una contribución de %s puntos porcentuales.",
+    txt_flujo,
+    tipo_concepto, 
+    concepto, 
+    res$paisconcod, 
+    .fmt_num(res$euros_prev), 
+    .fmt_num(res$euros), 
+    verbo_cambio,
+    .fmt_num(abs(res$dif)), 
+    .fmt_pct(res$tva * 100), 
+    .fmt_pp(res$rep * 100)
+  )]
+  
+  return(res)
+}
+
 ## Totales anuales ----
 ### Serie histórica ----
 # procesar_totales_anuales
@@ -2083,4 +2217,221 @@
   
   chart_final <- data.table::rbindlist(list(sec_pos_final, sec_neg_final))
   chart_final[order(-rep)]
+}
+
+.dataframe_pares_contribuciones <- function(ds = dsmad, 
+                                            metap = meta_pais, 
+                                            metas = meta_sec, 
+                                            para = paramets, 
+                                            tot = totalesanho, 
+                                            reg = "mad", 
+                                            flujo = "exp") {
+  
+  # Variables auxiliares
+  totalanop <- tot[[paste0(flujo, "_prev_", reg)]]
+  f_flujo   <- dplyr::if_else(flujo == "exp", 1L, 0L)
+  
+  # Extracción y agregación de microdatos
+  df <- ds |>
+    dplyr::filter(
+      año == para$anho | año == para$anho - 1L,
+      flujo == f_flujo,
+      mes %in% para$mes
+    ) |>
+    dplyr::group_by(año, pais, cod_sector_economico) |>
+    dplyr::summarise(euros = sum(euros, na.rm = TRUE), .groups = "drop") |>
+    dplyr::collect() |>
+    data.table::as.data.table()
+  
+  # Separación de periodos
+  df_act <- df[año == para$anho]
+  df_pas <- df[año == para$anho - 1L]
+  
+  df_pas[, `:=`(
+    año = año + 1L,
+    euros_prev = euros,
+    euros = NULL
+  )]
+  
+  # Unión de periodos en un único data.table base
+  df_con <- merge(df_act, df_pas, by = c("año", "pais", "cod_sector_economico"), all.x = TRUE)
+  df_con[is.na(euros), euros := 0]
+  df_con[is.na(euros_prev), euros_prev := 0]
+  
+  # Agregación de regiones geográficas básicas basadas en la columna reg de países
+  df_codigos_reg <- data.table::data.table(
+    pais = c("ZONA EURO", "RESTO DE EUROPA", "RESTO UE", "ASIA (excl. Oriente Medio)", "ÁFRICA", 
+             "AMÉRICA DEL NORTE", "AMÉRICA LATINA", "RESTO DE AMÉRICA", "ORIENTE MEDIO", "OCEANÍA", "OTROS"),
+    cod  = c(1001L, 1003L, 1002L, 1007L, 1009L, 1004L, 1005L, 1006L, 1008L, 1010L, 1011L)
+  )
+  
+  df_reg_geo <- merge(df_con, metap[, .(cod, reg)], by.x = "pais", by.y = "cod", all.x = TRUE)
+  df_reg_geo <- df_reg_geo[!is.na(reg), .(
+    euros      = sum(euros, na.rm = TRUE),
+    euros_prev = sum(euros_prev, na.rm = TRUE)
+  ), by = .(año, reg, cod_sector_economico)]
+  
+  df_reg_geo <- merge(df_reg_geo, df_codigos_reg, by.x = "reg", by.y = "pais", all.x = TRUE)
+  df_reg_geo <- df_reg_geo[, .(año, pais = cod, cod_sector_economico, euros, euros_prev)]
+  
+  df_con <- data.table::rbindlist(list(df_con, df_reg_geo), use.names = TRUE, fill = TRUE)
+  
+  # Función auxiliar para añadir regiones compuestas utilizando órdenes de países
+  añadir_fila_agregada_pais <- function(df_base, ordenes_origen, nuevo_cod) {
+    df_temp <- merge(df_base, metap[, .(cod, orden)], by.x = "pais", by.y = "cod", all.x = TRUE)
+    res <- df_temp[orden %in% ordenes_origen, .(
+      euros      = sum(euros, na.rm = TRUE),
+      euros_prev = sum(euros_prev, na.rm = TRUE)
+    ), by = .(año, cod_sector_economico)]
+    res[, pais := nuevo_cod]
+    return(res[, .(año, pais, cod_sector_economico, euros, euros_prev)])
+  }
+  
+  # Construcción de regiones compuestas geográficas
+  f_ue27     <- añadir_fila_agregada_pais(df_con, c(3, 23), 1013L)
+  f_america  <- añadir_fila_agregada_pais(df_con, c(38, 41, 47), 1014L)
+  f_asia     <- añadir_fila_agregada_pais(df_con, c(49, 59), 1015L)
+  df_con     <- data.table::rbindlist(list(df_con, f_ue27, f_america, f_asia), use.names = TRUE, fill = TRUE)
+  
+  f_europa   <- añadir_fila_agregada_pais(df_con, c(2, 31), 1012L)
+  df_con     <- data.table::rbindlist(list(df_con, f_europa), use.names = TRUE, fill = TRUE)
+  
+  # Agregación de sectores especiales por cada país o región generada
+  df_temp_sec <- merge(df_con, metas[, .(cod_sec, orden)], by.x = "cod_sector_economico", by.y = "cod_sec", all.x = TRUE)
+  f_sec18 <- df_temp_sec[orden %in% c(19, 20, 21, 22, 23), .(
+    euros      = sum(euros, na.rm = TRUE),
+    euros_prev = sum(euros_prev, na.rm = TRUE)
+  ), by = .(año, pais)]
+  
+  # Asignamos únicamente la clave primaria aquí para evitar conflictos en los merges
+  f_sec18[, cod_sector_economico := "F18"]
+  df_con <- data.table::rbindlist(list(df_con, f_sec18), use.names = TRUE, fill = TRUE)
+  
+  # Cruce final con los metadatos completos de países
+  df_con <- merge(df_con, metap, by.x = "pais", by.y = "cod", all.x = TRUE)
+  data.table::setnames(df_con, old = c("pais", "pais.y"), new = c("cod", "pais"))
+  
+  # Cruce final con los metadatos completos de sectores
+  df_con <- merge(
+    df_con, 
+    metas, 
+    by.x = "cod_sector_economico", 
+    by.y = "cod_sec", 
+    all.x = TRUE, 
+    suffixes = c("", "_sec")
+  )
+  data.table::setnames(df_con, old = "cod_sector_economico", new = "cod_sec")
+  
+  # Forzamos la inyección segura de metadatos para nuestro sector sintético F18
+  df_con[cod_sec == "F18", `:=`(
+    orden_sec = 18L,
+    nombre = "Semifacturas no químicas",
+    niv_sec = 1L,
+    codconnombre = "F18 - Semifacturas no químicas"
+  )]
+  
+  # Cálculo de diferencias e indicadores macroeconómicos
+  df_con[, dif := euros - euros_prev][, `:=`(
+    tva = dif / euros_prev,
+    rep = dif / totalanop
+  )]
+  
+  # Selección estricta de las columnas más importantes para el reporte final
+  df_final <- df_con[!is.na(nombre), .(
+    año,
+    orden,
+    cod,
+    paisconcod,
+    orden_sec,
+    cod_sec,
+    codconnombre,
+    niv_sec,
+    euros,
+    euros_prev,
+    dif,
+    tva,
+    rep
+  )]
+  
+  # Devolvemos el resultado perfectamente ordenado por su jerarquía oficial
+  data.table::setorder(df_final, año, orden, orden_sec)
+  
+  return(df_final[])
+}
+
+.dataframe_pares_taric_contribuciones <- function(ds = dsmadt, 
+                                                  metap = meta_pais, 
+                                                  metat = meta_taric, 
+                                                  para = paramets, 
+                                                  tot = totalesanho, 
+                                                  reg = "mad", 
+                                                  flujo = "exp") {
+  
+  # Variables auxiliares
+  totalanop <- tot[[paste0(flujo, "_prev_", reg)]]
+  f_flujo   <- dplyr::if_else(flujo == "exp", 1L, 0L)
+  
+  # Extracción y agregación de microdatos
+  df <- ds |>
+    dplyr::filter(
+      año == para$anho | año == para$anho - 1L,
+      flujo == f_flujo,
+      mes %in% para$mes
+    ) |>
+    dplyr::group_by(año, pais, cod_taric) |>
+    dplyr::summarise(euros = sum(euros, na.rm = TRUE), .groups = "drop") |>
+    dplyr::collect() |>
+    data.table::as.data.table()
+  
+  # Separación de periodos
+  df_act <- df[año == para$anho]
+  df_pas <- df[año == para$anho - 1L]
+  
+  df_pas[, `:=`(
+    año = año + 1L,
+    euros_prev = euros,
+    euros = NULL
+  )]
+  
+  df_con <- merge(df_act, df_pas, by = c("año", "pais", "cod_taric"), all.x = TRUE)
+  df_con[is.na(euros), euros := 0]
+  df_con[is.na(euros_prev), euros_prev := 0]
+  
+  # NUEVO: Cruces con Metadatos
+  setDT(df_con)
+  metap_dt <- data.table::as.data.table(metap)
+  metat_dt <- data.table::as.data.table(metat)
+  
+  df_con[, pais_num := as.numeric(pais)]
+  metap_dt[, cod_num := as.numeric(cod)]
+  
+  df_con[metap_dt, on = .(pais_num = cod_num), `:=`(
+    nombre_pais = i.pais,      
+    paisconcod  = i.paisconcod,
+    reg_pais    = i.reg
+  )]
+  
+  df_con[, cod_taric_num := as.numeric(cod_taric)]
+  metat_dt[, codint_taric_num := as.numeric(codint_taric)]
+  
+  df_con[metat_dt, on = .(cod_taric_num = codint_taric_num), `:=`(
+    meta_cod_taric_chr = i.cod_taric,
+    nivel_taric        = i.nivel_taric,
+    NC                 = i.NC,
+    Tar                = i.Tar,
+    Cap                = i.Cap,
+    Par                = i.Par,
+    Sub                = i.Sub,
+    N                  = i.N
+  )]
+  
+  # Limpieza de columnas auxiliares generadas para los cruces
+  df_con[, `:=`(pais_num = NULL, cod_taric_num = NULL)]
+  df_con[, dif := euros - euros_prev][, `:=`(
+    tva = dif / euros_prev,
+    rep = dif / totalanop
+  )]
+  
+  return(df_con)
+  
 }

@@ -9,18 +9,20 @@ source("./scr/R/nota_sectores/procfun/funciones_flextable.r")
 source("./scr/R/nota_sectores/procfun/funciones_plot.r")
 
 # Tabla CCAA ----
-df_tp1 <- .prepare_flextable_ccaas(df_ccaas)[c1 != "ND",
-                .(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15)]
+if (isTRUE(paramets$flag_ccaa)) {
+  df_tp1 <- .prepare_flextable_ccaas(df_ccaas)[c1 != "ND",
+                  .(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15)]
 
-ft_ccaa <- .make_flextable_ccaa(
-  df   = df_tp1,
-  para = paramets
-)
+  ft_ccaa <- .make_flextable_ccaa(
+    df   = df_tp1,
+    para = paramets
+  )
 
-flextable::save_as_image(ft_ccaa, path = file.path(paramets$path_outp , "table_p1_t1.png"), zoom = 1)
-wb <- wb_workbook()$add_worksheet("Resultados CCAA")
-wb <- wb_add_flextable(wb, sheet = "Resultados CCAA", ft = ft_ccaa, dims = "A1")
-wb_save(wb, file = file.path(paramets$path_outx, "table_p1_t1.xlsx"))
+  flextable::save_as_image(ft_ccaa, path = file.path(paramets$path_outp , "table_p1_t1.png"), zoom = 1)
+  wb <- wb_workbook()$add_worksheet("Resultados CCAA")
+  wb <- wb_add_flextable(wb, sheet = "Resultados CCAA", ft = ft_ccaa, dims = "A1")
+  wb_save(wb, file = file.path(paramets$path_outx, "table_p1_t1.xlsx"))
+}
 
 # Madrid · Sectores ----
 tbl_sec_spark_mad <- .exportar_sec_spark_imagen(
@@ -167,125 +169,131 @@ tbl_pais_spark_mad <- .exportar_pais_spark_imagen(
 )
 
 # Plots ----
-## Página 1 ----
-plot_mad_evo_mes <- .grafica_flujos_ccaa(
-  df        = df_ccaa_amp, 
-  flujo_fil = c("EXPORT", "IMPORT"), 
-  var_fil   = c("mes"),
-  temp_fil  = c("datoper"), 
-  ccaa_fil  = paramets$reg1, 
-  ano_fil   = paramets$ano_ini, 
-  mes_fil   = paramets$mes,
-  colde1    = paramets$colpal1,
-  colde3    = paramets$colpal2)
+if (isTRUE(paramets$flag_ccaa)) {
 
-## Página 2 (mm12 y años) -----
-plot_mad_exp_mm12 <- .grafica_mm(
-  df        = df_ccaa_amp, 
-  flujo_fil = c("EXPORT"), 
-  temp_fil  = c("MM12"), 
-  ccaa_fil  = paramets$reg1, 
-  fecha_ini = paramets$fecha_ini, 
-  fecha_fin = paramets$fecha,
-  colde1    = paramets$colpal1,
-  colde3    = paramets$colpal2)
+  ## Página 1 ----
+  plot_mad_evo_mes <- .grafica_flujos_ccaa(
+    df        = df_ccaa_amp, 
+    flujo_fil = c("EXPORT", "IMPORT"), 
+    var_fil   = c("mes"),
+    temp_fil  = c("datoper"), 
+    ccaa_fil  = paramets$reg1, 
+    ano_fil   = paramets$ano_ini, 
+    mes_fil   = paramets$mes,
+    colde1    = paramets$colpal1,
+    colde3    = paramets$colpal2)
 
-plot_mad_imp_mm12 <- .grafica_mm(
-  df = df_ccaa_amp, 
-  flujo_fil = c("IMPORT"), 
-  temp_fil  = c("MM12"), 
-  ccaa_fil  = paramets$reg1, 
-  fecha_ini = paramets$fecha_ini, 
-  fecha_fin = paramets$fecha,
-  colde1    = paramets$colpal1,
-  colde3    = paramets$colpal2)
+  ## Página 2 (mm12 y años) -----
+  plot_mad_exp_mm12 <- .grafica_mm(
+    df        = df_ccaa_amp, 
+    flujo_fil = c("EXPORT"), 
+    temp_fil  = c("MM12"), 
+    ccaa_fil  = paramets$reg1, 
+    fecha_ini = paramets$fecha_ini, 
+    fecha_fin = paramets$fecha,
+    colde1    = paramets$colpal1,
+    colde3    = paramets$colpal2)
 
-plot_mad_exp_anos <-  .grafica_anos(
-  dataframe  = df_ccaa_amp, 
-  ccaa_fil   = c("Madrid, Comunidad de"), 
-  flujo_fil  = c("EXPORT"),
-  temp_fil   = c("datoper", "acumulado"), 
-  var_fil    = c("mes"), 
-  mes_filtro = paramets$mes, 
-  ano_filtro = paramets$ano_ini,
-  colde1     = paramets$colpal1,
-  colde3     = paramets$colpal2,
-  colde5     = paramets$colpal3)
+  plot_mad_imp_mm12 <- .grafica_mm(
+    df = df_ccaa_amp, 
+    flujo_fil = c("IMPORT"), 
+    temp_fil  = c("MM12"), 
+    ccaa_fil  = paramets$reg1, 
+    fecha_ini = paramets$fecha_ini, 
+    fecha_fin = paramets$fecha,
+    colde1    = paramets$colpal1,
+    colde3    = paramets$colpal2)
 
-plot_mad_imp_anos <-  .grafica_anos(
-  dataframe   = df_ccaa_amp, 
-  ccaa_fil    = c("Madrid, Comunidad de"), 
-  flujo_fil   = c("IMPORT"),
-  temp_fil    = c("datoper", "acumulado"), 
-  var_fil     = c("mes"), 
-  mes_filtro  = paramets$mes, 
-  ano_filtro  = paramets$ano_ini,
-  colde1      = paramets$colpal1,
-  colde3      = paramets$colpal2,
-  colde5      = paramets$colpal3)
+  plot_mad_exp_anos <-  .grafica_anos(
+    dataframe  = df_ccaa_amp, 
+    ccaa_fil   = c("Madrid, Comunidad de"), 
+    flujo_fil  = c("EXPORT"),
+    temp_fil   = c("datoper", "acumulado"), 
+    var_fil    = c("mes"), 
+    mes_filtro = paramets$mes, 
+    ano_filtro = paramets$ano_ini,
+    colde1     = paramets$colpal1,
+    colde3     = paramets$colpal2,
+    colde5     = paramets$colpal3)
 
-plot_mad_mm12_anos <- (
-  (plot_mad_exp_anos + theme(plot.margin = unit(c(0, paramets$mh/2, paramets$mv/2, 0), "cm"))) + 
-    (plot_mad_exp_mm12 + theme(plot.margin = unit(c(0, 0, paramets$mv/2, paramets$mh/2), "cm"))) +
-    (plot_mad_imp_anos + theme(plot.margin = unit(c(paramets$mv/2, paramets$mh/2, 0, 0), "cm"))) + 
-    (plot_mad_imp_mm12 + theme(plot.margin = unit(c(paramets$mv/2, 0, 0, paramets$mh/2), "cm")))
-) + 
-  patchwork::plot_layout(ncol = 2, nrow = 2)
+  plot_mad_imp_anos <-  .grafica_anos(
+    dataframe   = df_ccaa_amp, 
+    ccaa_fil    = c("Madrid, Comunidad de"), 
+    flujo_fil   = c("IMPORT"),
+    temp_fil    = c("datoper", "acumulado"), 
+    var_fil     = c("mes"), 
+    mes_filtro  = paramets$mes, 
+    ano_filtro  = paramets$ano_ini,
+    colde1      = paramets$colpal1,
+    colde3      = paramets$colpal2,
+    colde5      = paramets$colpal3)
 
-# Salvado plots ----
-ggsave(
-  file.path(paramets$path_outp, "plot1_mad_evo_mes.png"), 
-  plot = plot_mad_evo_mes,
-  width = paramets$w1, 
-  height = paramets$h1, 
-  units = "cm", 
-  dpi = paramets$dpi
-)
+  plot_mad_mm12_anos <- (
+    (plot_mad_exp_anos + theme(plot.margin = unit(c(0, paramets$mh/2, paramets$mv/2, 0), "cm"))) + 
+      (plot_mad_exp_mm12 + theme(plot.margin = unit(c(0, 0, paramets$mv/2, paramets$mh/2), "cm"))) +
+      (plot_mad_imp_anos + theme(plot.margin = unit(c(paramets$mv/2, paramets$mh/2, 0, 0), "cm"))) + 
+      (plot_mad_imp_mm12 + theme(plot.margin = unit(c(paramets$mv/2, 0, 0, paramets$mh/2), "cm")))
+  ) + 
+    patchwork::plot_layout(ncol = 2, nrow = 2)
 
-ggsave(
-  file.path(paramets$path_outp, "plot211_mad_exp_anos.png"), 
-  plot = plot_mad_exp_anos,
-  width = paramets$w2, 
-  height = paramets$h2, 
-  units = "cm", 
-  dpi = paramets$dpi
-)
+  # Salvado plots ----
+  ggsave(
+    file.path(paramets$path_outp, "plot1_mad_evo_mes.png"), 
+    plot = plot_mad_evo_mes,
+    width = paramets$w1, 
+    height = paramets$h1, 
+    units = "cm", 
+    dpi = paramets$dpi
+  )
 
-ggsave(
-  file.path(paramets$path_outp, "plot212_mad_exp_mm12.png"), 
-  plot = plot_mad_exp_mm12,
-  width = paramets$w2, 
-  height = paramets$h2, 
-  units = "cm", 
-  dpi = paramets$dpi
-)
+  ggsave(
+    file.path(paramets$path_outp, "plot211_mad_exp_anos.png"), 
+    plot = plot_mad_exp_anos,
+    width = paramets$w2, 
+    height = paramets$h2, 
+    units = "cm", 
+    dpi = paramets$dpi
+  )
 
-ggsave(
-  file.path(paramets$path_outp, "plot221_mad_exp_anos.png"), 
-  plot = plot_mad_imp_anos,
-  width = paramets$w2, 
-  height = paramets$h2, 
-  units = "cm", 
-  dpi = paramets$dpi
-)
+  ggsave(
+    file.path(paramets$path_outp, "plot212_mad_exp_mm12.png"), 
+    plot = plot_mad_exp_mm12,
+    width = paramets$w2, 
+    height = paramets$h2, 
+    units = "cm", 
+    dpi = paramets$dpi
+  )
 
-ggsave(
-  file.path(paramets$path_outp, "plot222_mad_imp_mm12.png"), 
-  plot = plot_mad_imp_mm12,
-  width = paramets$w2, 
-  height = paramets$h2, 
-  units = "cm", 
-  dpi = paramets$dpi
-)
+  ggsave(
+    file.path(paramets$path_outp, "plot221_mad_exp_anos.png"), 
+    plot = plot_mad_imp_anos,
+    width = paramets$w2, 
+    height = paramets$h2, 
+    units = "cm", 
+    dpi = paramets$dpi
+  )
 
-ggsave(
-  file.path(paramets$path_outp, "plot2_mad_mm12_anos.png"),
-  plot = plot_mad_mm12_anos,
-  width = paramets$w2 * 2 + paramets$mh,
-  height = paramets$h2 * 2 + paramets$mv,
-  units = "cm",
-  dpi = paramets$dpi
-)
+  ggsave(
+    file.path(paramets$path_outp, "plot222_mad_imp_mm12.png"), 
+    plot = plot_mad_imp_mm12,
+    width = paramets$w2, 
+    height = paramets$h2, 
+    units = "cm", 
+    dpi = paramets$dpi
+  )
+
+  ggsave(
+    file.path(paramets$path_outp, "plot2_mad_mm12_anos.png"),
+    plot = plot_mad_mm12_anos,
+    width = paramets$w2 * 2 + paramets$mh,
+    height = paramets$h2 * 2 + paramets$mv,
+    units = "cm",
+    dpi = paramets$dpi
+  )
+
+} else {
+  message("[tablas] flag_ccaa = FALSE: tabla CCAA y plots Pág. 1/2 omitidos.")
+}
 
 
 

@@ -11,65 +11,71 @@
 # Entorno ----
 source("./scr/R/nota_sectores_bis/procfun/funciones_text.r")
 
-# Listas generales ----
-lista_esp <- as.list(df_ccaas[Etiqueta == "ESP"])
-lista_mad <- as.list(df_ccaas[Etiqueta == "CM"])
-
 # mes de referencia para los rankings (último mes del periodo)
 .mes_ref <- max(paramets$mes)
 
-## Rankings Madrid ----
-lista_mad$exp_rankmes    <- df_mad_rank[flujo == "EXPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_mes
-lista_mad$exp_rankmesacu <- df_mad_rank[flujo == "EXPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_ytd
-lista_mad$imp_rankmes    <- df_mad_rank[flujo == "IMPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_mes
-lista_mad$imp_rankmesacu <- df_mad_rank[flujo == "IMPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_ytd
+if (isTRUE(paramets$flag_ccaa)) {
 
-lista_mad$exp_rank_hist_txt <- .fmt_rank_hist(
-  rank  = lista_mad$exp_rankmes,
-  anhos = df_mad_rank[flujo == "EXPORT" & rank_mes < lista_mad$exp_rankmes][order(rank_mes)]$Año
-)
-lista_mad$exp_rank_hist_ytd_txt <- .fmt_rank_hist(
-  rank  = lista_mad$exp_rankmesacu,
-  anhos = df_mad_rank[flujo == "EXPORT" & rank_ytd < lista_mad$exp_rankmesacu][order(rank_ytd)]$Año
-)
-lista_mad$imp_rank_hist_txt <- .fmt_rank_hist(
-  rank  = lista_mad$imp_rankmes,
-  anhos = df_mad_rank[flujo == "IMPORT" & rank_mes < lista_mad$imp_rankmes][order(rank_mes)]$Año
-)
-lista_mad$imp_rank_hist_ytd_txt <- .fmt_rank_hist(
-  rank  = lista_mad$imp_rankmesacu,
-  anhos = df_mad_rank[flujo == "IMPORT" & rank_ytd < lista_mad$imp_rankmesacu][order(rank_ytd)]$Año
-)
+  # Listas generales (dependen de df_ccaas, solo disponible si flag_ccaa) ----
+  lista_esp <- as.list(df_ccaas[Etiqueta == "ESP"])
+  lista_mad <- as.list(df_ccaas[Etiqueta == "CM"])
 
-## Rankings España ----
-lista_esp$exp_rankmes    <- df_esp_rank[flujo == "EXPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_mes
-lista_esp$exp_rankmesacu <- df_esp_rank[flujo == "EXPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_ytd
-lista_esp$imp_rankmes    <- df_esp_rank[flujo == "IMPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_mes
-lista_esp$imp_rankmesacu <- df_esp_rank[flujo == "IMPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_ytd
+  ## Rankings Madrid ----
+  lista_mad$exp_rankmes    <- df_mad_rank[flujo == "EXPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_mes
+  lista_mad$exp_rankmesacu <- df_mad_rank[flujo == "EXPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_ytd
+  lista_mad$imp_rankmes    <- df_mad_rank[flujo == "IMPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_mes
+  lista_mad$imp_rankmesacu <- df_mad_rank[flujo == "IMPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_ytd
 
-## Texto ccaas ----
-lista_texto_ccaas <- local({
-
-  df <- df_ccaas[Coddax >= 1 & Coddax <= 17]
-
-  n_exp_inc <- sum(df$exp_euros_dif > 0)
-  n_imp_inc <- sum(df$imp_euros_dif > 0)
-
-  list(
-    n_exp_inc   = n_exp_inc,
-    n_imp_inc   = n_imp_inc,
-    lbl_exp_inc = paste0("**", n_exp_inc, "** ", ifelse(n_exp_inc == 1,
-                                                        "comunidad autónoma aumentó sus",
-                                                        "comunidades autónomas aumentaron sus")),
-    lbl_imp_inc = paste0("**", n_imp_inc, "** ", ifelse(n_imp_inc == 1,
-                                                        "registró un incremento",
-                                                        "registraron incrementos")),
-    exp_pos     = .fmt_top3(df[order(-exp_euros_rep)][1:3], "Región", "exp_euros_rep"),
-    exp_neg     = .fmt_top3(df[order(exp_euros_rep)][1:3],  "Región", "exp_euros_rep"),
-    imp_pos     = .fmt_top3(df[order(-imp_euros_rep)][1:3], "Región", "imp_euros_rep"),
-    imp_neg     = .fmt_top3(df[order(imp_euros_rep)][1:3],  "Región", "imp_euros_rep")
+  lista_mad$exp_rank_hist_txt <- .fmt_rank_hist(
+    rank  = lista_mad$exp_rankmes,
+    anhos = df_mad_rank[flujo == "EXPORT" & rank_mes < lista_mad$exp_rankmes][order(rank_mes)]$Año
   )
-})
+  lista_mad$exp_rank_hist_ytd_txt <- .fmt_rank_hist(
+    rank  = lista_mad$exp_rankmesacu,
+    anhos = df_mad_rank[flujo == "EXPORT" & rank_ytd < lista_mad$exp_rankmesacu][order(rank_ytd)]$Año
+  )
+  lista_mad$imp_rank_hist_txt <- .fmt_rank_hist(
+    rank  = lista_mad$imp_rankmes,
+    anhos = df_mad_rank[flujo == "IMPORT" & rank_mes < lista_mad$imp_rankmes][order(rank_mes)]$Año
+  )
+  lista_mad$imp_rank_hist_ytd_txt <- .fmt_rank_hist(
+    rank  = lista_mad$imp_rankmesacu,
+    anhos = df_mad_rank[flujo == "IMPORT" & rank_ytd < lista_mad$imp_rankmesacu][order(rank_ytd)]$Año
+  )
+
+  ## Rankings España ----
+  lista_esp$exp_rankmes    <- df_esp_rank[flujo == "EXPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_mes
+  lista_esp$exp_rankmesacu <- df_esp_rank[flujo == "EXPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_ytd
+  lista_esp$imp_rankmes    <- df_esp_rank[flujo == "IMPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_mes
+  lista_esp$imp_rankmesacu <- df_esp_rank[flujo == "IMPORT" & Año == paramets$anho & Mes == .mes_ref]$rank_ytd
+
+  ## Texto ccaas ----
+  lista_texto_ccaas <- local({
+
+    df <- df_ccaas[Coddax >= 1 & Coddax <= 17]
+
+    n_exp_inc <- sum(df$exp_euros_dif > 0)
+    n_imp_inc <- sum(df$imp_euros_dif > 0)
+
+    list(
+      n_exp_inc   = n_exp_inc,
+      n_imp_inc   = n_imp_inc,
+      lbl_exp_inc = paste0("**", n_exp_inc, "** ", ifelse(n_exp_inc == 1,
+                                                          "comunidad autónoma aumentó sus",
+                                                          "comunidades autónomas aumentaron sus")),
+      lbl_imp_inc = paste0("**", n_imp_inc, "** ", ifelse(n_imp_inc == 1,
+                                                          "registró un incremento",
+                                                          "registraron incrementos")),
+      exp_pos     = .fmt_top3(df[order(-exp_euros_rep)][1:3], "Región", "exp_euros_rep"),
+      exp_neg     = .fmt_top3(df[order(exp_euros_rep)][1:3],  "Región", "exp_euros_rep"),
+      imp_pos     = .fmt_top3(df[order(-imp_euros_rep)][1:3], "Región", "imp_euros_rep"),
+      imp_neg     = .fmt_top3(df[order(imp_euros_rep)][1:3],  "Región", "imp_euros_rep")
+    )
+  })
+
+} else {
+  message("[texts] flag_ccaa = FALSE: rankings y texto de CC.AA. omitidos.")
+}
 
 ## Texto sectores y subsectores ----
 lista_texto_sectores <- local({

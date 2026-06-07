@@ -25,9 +25,11 @@ paramets <- list(
   ## 2. Rutas de datos
   ## ----------------------------------------------------------
   path_mad              = "./data/interim/madrid/madrid_euros_sectores.parquet",
+  path_madt             = "./data/interim/madrid/madrid_euros_taric.parquet",
   path_esp              = "./data/interim/espana/espana_euros_sectores.parquet",
   path_sec              = "./data/metatratado/sectores.xlsx",
   path_pais             = "./data/metatratado/paises_zonas.xlsx",
+  path_taric            = "./data/raw/metadatos/TARIC.csv",
   path_ccaa             = "./data/interim/totalesccaa/totalesccaa.csv",
   path_mccaa            = "./data/metatratado/regiones.xlsx",
   path_ccaafull         = "./data/output/ccaacappais/df_ccaa_mes_amp.csv",
@@ -51,6 +53,7 @@ paramets <- list(
   flagespytm            = TRUE,
   flagmadanop           = TRUE,
   flagespanop           = TRUE,
+  flag_ccaa             = TRUE,   # TRUE = incluir análisis de CC.AA.
 
   ## ----------------------------------------------------------
   ## 5. Opciones de plots
@@ -72,6 +75,7 @@ paramets <- list(
   max_nivel_pai         = 3L,
   max_bars_con          = 3L,
   max_bars_vol          = 8L,
+  n_pares_con           = 1000L,
   reg1                  = "Madrid, Comunidad de",
   reg2                  = "España",
   dpi                   = 300,
@@ -85,6 +89,7 @@ paramets <- list(
   ws_height_cm          = 8,
   ws_width_cm_alt       = 10,
   ws_height_cm_alt      = 8,
+
 
   ## ----------------------------------------------------------
   ## 6. Paleta tablas gt

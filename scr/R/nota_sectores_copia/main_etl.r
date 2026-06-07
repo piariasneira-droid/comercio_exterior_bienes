@@ -19,11 +19,16 @@ source("./scr/R/nota_sectores_bis/procfun/funciones_etl.r")
 meta_sec  <- .leer_excel_sheets(paramets$path_sec,  c("sectores",   "agregaciones"))
 meta_pais <- .leer_excel_sheets(paramets$path_pais, c("paises",     "regiones"))
 meta_ccaa <- as.data.table(read.xlsx(paramets$path_mccaa))
+meta_taric <- .cargar_taric(paramets$path_taric)
 
 # Carga datasets Arrow (apertura en streaming, sin cargar en RAM) ----
 dsmad   <- arrow::open_dataset(paramets$path_mad)
 dsesp   <- arrow::open_dataset(paramets$path_esp)
-dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
+dsmadt <- arrow::open_dataset(paramets$path_madt)
+
+if (isTRUE(paramets$flag_ccaa)) {
+  dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
+}
 
 # ============================================================
 # Función interna: ejecuta el pipeline completo para un periodo
@@ -35,15 +40,15 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
 #
 # Devuelve una lista con todos los data.frames del periodo.
 # ============================================================
-.run_etl_periodo <- function(para_periodo, ds_mad, ds_esp, meta_sec, meta_pais) {
-
+.run_etl_periodo <- function(para_periodo, ds_mad, ds_esp, ds_madt, meta_sec, meta_pais) {
+  
   ## Totales anuales ----
   totales_anuales <- .procesar_totales_anuales(
     ds_mad     = ds_mad,
     ds_esp     = ds_esp,
     parametros = para_periodo
   )
-
+  
   ## Sectores ----
   ### Datacomex ----
   tabla_sectores_aux <- .tabla_sectores_datacomex(
@@ -54,7 +59,7 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
   )
   totalesanho  <- .extraer_totales_de_tabla(tabla_sectores_aux)
   df_sectores  <- .procesar_salida_sectores(tabla_sectores_aux, totalesanho)
-
+  
   ### Full ----
   df_sec <- .tabla_sectores_f(
     ds_mad     = ds_mad,
@@ -62,7 +67,7 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     df_sec     = meta_sec,
     parametros = para_periodo
   )
-
+  
   ### Evol ----
   tabla_evol_sec_raw <- .sectores_evol(
     ds_mad     = ds_mad,
@@ -71,7 +76,7 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     parametros = para_periodo
   )
   df_evol_sec <- .procesar_evol_sectores(tabla_evol_sec_raw, ano_base = para_periodo$anho_idx)
-
+  
   ## Países ----
   ### Datacomex ----
   tabla_paises_aux <- .tabla_paises_datacomex(
@@ -82,7 +87,7 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     parametros = para_periodo
   )
   df_paises <- .procesar_salida_paises(tabla_paises_aux, totalesanho)
-
+  
   ### Full ----
   df_country <- .tabla_paises_f(
     ds_mad     = ds_mad,
@@ -90,7 +95,7 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     df_paises  = meta_pais,
     parametros = para_periodo
   )
-
+  
   ### Evol ----
   tabla_evol_pais_raw <- .paises_evol(
     ds_mad     = ds_mad,
@@ -99,7 +104,7 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     parametros = para_periodo
   )
   df_evol_pais <- .procesar_evol_paises(tabla_evol_pais_raw, ano_base = para_periodo$anho_idx)
-
+  
   ### Bump ----
   df_evol_secfull <- .sectores_evol_f(
     ds_mad     = ds_mad,
@@ -113,7 +118,7 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     df_paises  = meta_pais,
     parametros = para_periodo
   )
-
+  
   ## Contribuciones datacomex ----
   ### Madrid ----
   df_contrib_paises_exp_informe <- .df_plot_barras_contribucion_sectores_datacomex(
@@ -136,7 +141,7 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     flujo    = "imp", region = "mad", metas = meta_sec, metap = meta_pais,
     dss_mad  = ds_mad, dss_esp = ds_esp
   )
-
+  
   ### España ----
   df_contrib_paises_exp_informe_esp <- .df_plot_barras_contribucion_sectores_datacomex(
     df       = df_evol_countryfull, para = para_periodo, totalesf = totalesanho,
@@ -158,7 +163,46 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     flujo    = "imp", region = "esp", metas = meta_sec, metap = meta_pais,
     dss_mad  = ds_mad, dss_esp = ds_esp
   )
-
+  
+  ## Contribuciones pares país × sector / país × taric (solo Madrid) ----
+  df_contrib_paises_sec_exp <- .dataframe_pares_contribuciones(
+    ds    = ds_mad,
+    metap = meta_pais,
+    metas = meta_sec,
+    para  = para_periodo,
+    tot   = totalesanho,
+    reg   = "mad",
+    flujo = "exp"
+  )
+  df_contrib_paises_sec_imp <- .dataframe_pares_contribuciones(
+    ds    = ds_mad,
+    metap = meta_pais,
+    metas = meta_sec,
+    para  = para_periodo,
+    tot   = totalesanho,
+    reg   = "mad",
+    flujo = "imp"
+  )
+  # dsmadt is a module-level dataset (taric), passed as ds_madt
+  df_contrib_paises_taric_exp <- .dataframe_pares_taric_contribuciones(
+    ds    = ds_madt,
+    metap = meta_pais,
+    metat = meta_taric,
+    para  = para_periodo,
+    tot   = totalesanho,
+    reg   = "mad",
+    flujo = "exp"
+  )
+  df_contrib_paises_taric_imp <- .dataframe_pares_taric_contribuciones(
+    ds    = ds_madt,
+    metap = meta_pais,
+    metat = meta_taric,
+    para  = para_periodo,
+    tot   = totalesanho,
+    reg   = "mad",
+    flujo = "imp"
+  )
+  
   ## Devolver todo empaquetado ----
   list(
     totales_anuales              = totales_anuales,
@@ -178,47 +222,59 @@ dfccaas <- data.table::fread(paramets$path_ccaa, drop = c("estado", "dolares"))
     df_contrib_paises_exp_informe_esp = df_contrib_paises_exp_informe_esp,
     df_contrib_paises_imp_informe_esp = df_contrib_paises_imp_informe_esp,
     df_contrib_sec_exp_informe_esp   = df_contrib_sec_exp_informe_esp,
-    df_contrib_sec_imp_informe_esp   = df_contrib_sec_imp_informe_esp
+    df_contrib_sec_imp_informe_esp   = df_contrib_sec_imp_informe_esp,
+    # pares país × sector (mad)
+    df_contrib_paises_sec_exp    = df_contrib_paises_sec_exp,
+    df_contrib_paises_sec_imp    = df_contrib_paises_sec_imp,
+    # pares país × taric (mad)
+    df_contrib_paises_taric_exp  = df_contrib_paises_taric_exp,
+    df_contrib_paises_taric_imp  = df_contrib_paises_taric_imp
   )
 }
 
 # ============================================================
 # CCAAs  (no cambian entre periodos, se procesan una sola vez)
 # ============================================================
-df_ccaas <- .dataframe_general(df = dfccaas, para = paramets, meta = meta_ccaa)
-
-df_ccaa_amp <- .read_processed_data(paramets$path_ccaafull, "mes") %>%
-  filter(ccaa %in% c(paramets$reg1, paramets$reg2))
-
-df_mad_rank <- df_ccaa_amp[
-  ccaa == "Madrid, Comunidad de" &
-    flujo %in% c("EXPORT", "IMPORT") &
-    var == "mes" &
-    temp %in% c("datoper", "acumulado") &
-    Mes %in% paramets$mes
-][, rank := frank(-valor, ties.method = "min"),
-  by = .(flujo, temp, Mes)
-][, .(
-  valor_mes = valor[temp == "datoper"],
-  rank_mes  = rank[temp == "datoper"],
-  valor_ytd = valor[temp == "acumulado"],
-  rank_ytd  = rank[temp == "acumulado"]
-), by = .(ccaa, flujo, Mes, Año)]
-
-df_esp_rank <- df_ccaa_amp[
-  ccaa == "España" &
-    flujo %in% c("EXPORT", "IMPORT") &
-    var == "mes" &
-    temp %in% c("datoper", "acumulado") &
-    Mes %in% paramets$mes
-][, rank := frank(-valor, ties.method = "min"),
-  by = .(flujo, temp, Mes)
-][, .(
-  valor_mes = valor[temp == "datoper"],
-  rank_mes  = rank[temp == "datoper"],
-  valor_ytd = valor[temp == "acumulado"],
-  rank_ytd  = rank[temp == "acumulado"]
-), by = .(ccaa, flujo, Mes, Año)]
+if (isTRUE(paramets$flag_ccaa)) {
+  
+  df_ccaas <- .dataframe_general(df = dfccaas, para = paramets, meta = meta_ccaa)
+  
+  df_ccaa_amp <- .read_processed_data(paramets$path_ccaafull, "mes") %>%
+    filter(ccaa %in% c(paramets$reg1, paramets$reg2))
+  
+  df_mad_rank <- df_ccaa_amp[
+    ccaa == "Madrid, Comunidad de" &
+      flujo %in% c("EXPORT", "IMPORT") &
+      var == "mes" &
+      temp %in% c("datoper", "acumulado") &
+      Mes %in% paramets$mes
+  ][, rank := frank(-valor, ties.method = "min"),
+    by = .(flujo, temp, Mes)
+  ][, .(
+    valor_mes = valor[temp == "datoper"],
+    rank_mes  = rank[temp == "datoper"],
+    valor_ytd = valor[temp == "acumulado"],
+    rank_ytd  = rank[temp == "acumulado"]
+  ), by = .(ccaa, flujo, Mes, Año)]
+  
+  df_esp_rank <- df_ccaa_amp[
+    ccaa == "España" &
+      flujo %in% c("EXPORT", "IMPORT") &
+      var == "mes" &
+      temp %in% c("datoper", "acumulado") &
+      Mes %in% paramets$mes
+  ][, rank := frank(-valor, ties.method = "min"),
+    by = .(flujo, temp, Mes)
+  ][, .(
+    valor_mes = valor[temp == "datoper"],
+    rank_mes  = rank[temp == "datoper"],
+    valor_ytd = valor[temp == "acumulado"],
+    rank_ytd  = rank[temp == "acumulado"]
+  ), by = .(ccaa, flujo, Mes, Año)]
+  
+} else {
+  message("[ETL] flag_ccaa = FALSE: análisis de CC.AA. omitido.")
+}
 
 # ============================================================
 # Ejecutar los tres periodos con copias limpias de paramets
@@ -227,17 +283,17 @@ df_esp_rank <- df_ccaa_amp[
 # --- Periodo "mes" (el análisis principal) ---
 message("[ETL] Procesando periodo mes: ", paste(paramets$mes, collapse = ":"))
 p_mes  <- modifyList(paramets, list(mes = paramets$mes))
-res_mes <- .run_etl_periodo(p_mes, dsmad, dsesp, meta_sec, meta_pais)
+res_mes <- .run_etl_periodo(p_mes, dsmad, dsesp, dsmadt, meta_sec, meta_pais)
 
 # --- Periodo "acumulado" (enero → max(mes)) ---
 message("[ETL] Procesando periodo acumulado: 1:", max(paramets$mes))
 p_acu  <- modifyList(paramets, list(mes = 1L:max(paramets$mes)))
-res_acu <- .run_etl_periodo(p_acu, dsmad, dsesp, meta_sec, meta_pais)
+res_acu <- .run_etl_periodo(p_acu, dsmad, dsesp, dsmadt, meta_sec, meta_pais)
 
 # --- Periodo "año pasado" (año-1, meses 1:12) ---
 message("[ETL] Procesando anho pasado: ", paramets$anho - 1L)
 p_anop <- modifyList(paramets, list(anho = paramets$anho - 1L, mes = 1L:12L))
-res_anop <- .run_etl_periodo(p_anop, dsmad, dsesp, meta_sec, meta_pais)
+res_anop <- .run_etl_periodo(p_anop, dsmad, dsesp, dsmadt, meta_sec, meta_pais)
 
 # ============================================================
 # Exponer los data.frames en el entorno global con los mismos
@@ -267,6 +323,10 @@ df_contrib_paises_exp_informe_esp_acu <- res_acu$df_contrib_paises_exp_informe_e
 df_contrib_paises_imp_informe_esp_acu <- res_acu$df_contrib_paises_imp_informe_esp
 df_contrib_sec_exp_informe_esp_acu   <- res_acu$df_contrib_sec_exp_informe_esp
 df_contrib_sec_imp_informe_esp_acu   <- res_acu$df_contrib_sec_imp_informe_esp
+df_contrib_paises_sec_exp_acu        <- res_acu$df_contrib_paises_sec_exp
+df_contrib_paises_sec_imp_acu        <- res_acu$df_contrib_paises_sec_imp
+df_contrib_paises_taric_exp_acu      <- res_acu$df_contrib_paises_taric_exp
+df_contrib_paises_taric_imp_acu      <- res_acu$df_contrib_paises_taric_imp
 
 # -- Periodo año pasado (sufijo _anopas) --
 totales_anuales_anopas              <- res_anop$totales_anuales
@@ -287,6 +347,10 @@ df_contrib_paises_exp_informe_esp_anopas <- res_anop$df_contrib_paises_exp_infor
 df_contrib_paises_imp_informe_esp_anopas <- res_anop$df_contrib_paises_imp_informe_esp
 df_contrib_sec_exp_informe_esp_anopas   <- res_anop$df_contrib_sec_exp_informe_esp
 df_contrib_sec_imp_informe_esp_anopas   <- res_anop$df_contrib_sec_imp_informe_esp
+df_contrib_paises_sec_exp_anopas        <- res_anop$df_contrib_paises_sec_exp
+df_contrib_paises_sec_imp_anopas        <- res_anop$df_contrib_paises_sec_imp
+df_contrib_paises_taric_exp_anopas      <- res_anop$df_contrib_paises_taric_exp
+df_contrib_paises_taric_imp_anopas      <- res_anop$df_contrib_paises_taric_imp
 
 # ============================================================
 # Salidas Excel
@@ -394,24 +458,84 @@ idx_cols_evol_pais <- grep("_idx_",           names(df_evol_pais), value = TRUE)
   extra_sheets = list(acu = df_country_acu, anopas = df_country_anopas)
 )
 
-## CCAAs ----
+## Contribuciones pares país × sector / país × taric (mad) ----
+# país × sector exp
+nombre_pares_sec_exp <- sprintf("contrib_pares_sec_exp_%s.xlsx", sufijo_mes)
 .write_formatted_xlsx(
-  data       = df_ccaas,
-  parametros = paramets,
-  file_name  = nombre_ccaas,
-  int_cols   = c("Coddax",
-                 "exp_euros_rank",     "imp_euros_rank",
-                 "exp_euros_acu_rank", "imp_euros_acu_rank",
-                 "exp_euros_anoant_rank", "imp_euros_anoant_rank"),
-  pct_cols   = c(
-    "exp_euros_peso",     "exp_euros_tva",     "exp_euros_rep",
-    "imp_euros_peso",     "imp_euros_tva",     "imp_euros_rep",
-    "exp_euros_acu_peso", "exp_euros_acu_tva", "exp_euros_acu_rep",
-    "imp_euros_acu_peso", "imp_euros_acu_tva", "imp_euros_acu_rep",
-    "exp_euros_anoant_peso", "exp_euros_tva2",  "exp_euros_tva2_rep",
-    "imp_euros_anoant_peso", "imp_euros_tva2",  "imp_euros_tva2_rep"
+  data         = .top_bottom_rep(df_contrib_paises_sec_exp, n = paramets$n_pares_con, flujo = "exp"),
+  parametros   = paramets,
+  file_name    = nombre_pares_sec_exp,
+  int_cols     = c("año", "cod"),
+  pct_cols     = c("tva", "rep"),
+  extra_sheets = list(
+    acu    = .top_bottom_rep(df_contrib_paises_sec_exp_acu, n = paramets$n_pares_con, flujo = "exp"),
+    anopas = .top_bottom_rep(df_contrib_paises_sec_exp_anopas, n = paramets$n_pares_con, flujo = "exp")
   )
 )
+
+# país × sector imp
+nombre_pares_sec_imp <- sprintf("contrib_pares_sec_imp_%s.xlsx", sufijo_mes)
+.write_formatted_xlsx(
+  data         = .top_bottom_rep(df_contrib_paises_sec_imp, n = paramets$n_pares_con, flujo = "imp"),
+  parametros   = paramets,
+  file_name    = nombre_pares_sec_imp,
+  int_cols     = c("año", "cod"),
+  pct_cols     = c("tva", "rep"),
+  # tva and rep are already decimal — do not pass to pct_cols
+  extra_sheets = list(
+    acu    = .top_bottom_rep(df_contrib_paises_sec_imp_acu, n = paramets$n_pares_con, flujo = "imp"),
+    anopas = .top_bottom_rep(df_contrib_paises_sec_imp_anopas, n = paramets$n_pares_con, flujo = "imp")
+  )
+)
+
+# país × taric exp
+nombre_pares_taric_exp <- sprintf("contrib_pares_taric_exp_%s.xlsx", sufijo_mes)
+.write_formatted_xlsx(
+  data         = .top_bottom_rep(df_contrib_paises_taric_exp, n = paramets$n_pares_con, flujo = "exp"),
+  parametros   = paramets,
+  file_name    = nombre_pares_taric_exp,
+  int_cols     = c("año", "pais", "cod_taric", "nivel_taric"),
+  pct_cols     = c("tva", "rep"),
+  extra_sheets = list(
+    acu    = .top_bottom_rep(df_contrib_paises_taric_exp_acu, n = paramets$n_pares_con, flujo = "exp"),
+    anopas = .top_bottom_rep(df_contrib_paises_taric_exp_anopas, n = paramets$n_pares_con, flujo = "exp")
+  )
+)
+
+# --- país × taric imp ---
+nombre_pares_taric_imp <- sprintf("contrib_pares_taric_imp_%s.xlsx", sufijo_mes)
+.write_formatted_xlsx(
+  data         = .top_bottom_rep(df_contrib_paises_taric_imp, n = paramets$n_pares_con, flujo = "imp"),
+  parametros   = paramets,
+  file_name    = nombre_pares_taric_imp,
+  int_cols     = c("año", "pais", "cod_taric", "nivel_taric"),
+  pct_cols     = c("tva", "rep"),
+  extra_sheets = list(
+    acu    = .top_bottom_rep(df_contrib_paises_taric_imp_acu, n = paramets$n_pares_con, flujo = "imp"),
+    anopas = .top_bottom_rep(df_contrib_paises_taric_imp_anopas, n = paramets$n_pares_con, flujo = "imp")
+  )
+)
+
+## CCAAs ----
+if (isTRUE(paramets$flag_ccaa)) {
+  .write_formatted_xlsx(
+    data       = df_ccaas,
+    parametros = paramets,
+    file_name  = nombre_ccaas,
+    int_cols   = c("Coddax",
+                   "exp_euros_rank",     "imp_euros_rank",
+                   "exp_euros_acu_rank", "imp_euros_acu_rank",
+                   "exp_euros_anoant_rank", "imp_euros_anoant_rank"),
+    pct_cols   = c(
+      "exp_euros_peso",     "exp_euros_tva",     "exp_euros_rep",
+      "imp_euros_peso",     "imp_euros_tva",     "imp_euros_rep",
+      "exp_euros_acu_peso", "exp_euros_acu_tva", "exp_euros_acu_rep",
+      "imp_euros_acu_peso", "imp_euros_acu_tva", "imp_euros_acu_rep",
+      "exp_euros_anoant_peso", "exp_euros_tva2",  "exp_euros_tva2_rep",
+      "imp_euros_anoant_peso", "imp_euros_tva2",  "imp_euros_tva2_rep"
+    )
+  )
+}
 
 # Limpieza memoria ----
 .limpiar_memoria()

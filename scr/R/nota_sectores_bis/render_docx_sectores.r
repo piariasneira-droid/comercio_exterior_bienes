@@ -10,11 +10,22 @@ tiempo_inicio <- proc.time()
 # ▼▼▼  PARÁMETROS — SOLO TOCAR AQUÍ  ▼▼▼
 # ===========================================================
 mis_params <- list(
-  anho     = 2025L,
-  mes      = 3L,      # mes suelto (3L) o trimestre (4L:6L)
-  ano_ini  = 2017L,
-  anho_idx = 2019L
-)
+  anho         = 2026L,            # Año análisis
+  mes          = 4L:6L,            # mes suelto (3L), trimestre (4L:6L) o conjunto de meses sueltos c(1L, 3L, 4L, 5L)
+  ano_ini      = 2017L,            # Año inicial
+  anho_idx     = 2019L,            # Año de referencia para tendencias anexos
+  
+  # Flags — TRUE = generar / FALSE = saltar
+  flagmadmes   = TRUE,             # General mes o periodos para Madrid
+  flagespmes   = TRUE,             # Id España
+  flagmadytm   = TRUE,             # General acumulados para Madrid. El acumulado se hace 1L: máximo meses
+  flagespytm   = TRUE,             # Id España
+  flagmadanop  = TRUE,             # Totales año anterior para Madrid
+  flagespanop  = TRUE,             # Id Esapaña
+  flag_ccaa    = TRUE              # Flag para los dataframes con los totales generales de las CCAA 
+                                   # Importante: FALSE si trimestre o se incluyen varios meses, ya que los plots de la página 1 y 2 se crashean
+                                   # De hecho, si se genera un trimestre o conjunto de meses lo suyo sería poner FASE a tidi menos a la flag de meses
+  )
 # ===========================================================
 # ▲▲▲  FIN DE ZONA EDITABLE  ▲▲▲
 # ===========================================================
@@ -28,10 +39,17 @@ ruta_quarto_qmd         <- "./scr/R/nota_sectores_bis/nota_sectores.qmd"
 # Cargamos parametros.r y sobreescribimos los 4 campos clave.
 # mes NO se colapsa con as.integer() para preservar vectores (4L:6L).
 source("./scr/R/nota_sectores_bis/procfun/parametros.r")
-paramets$anho     <- as.integer(mis_params$anho)
-paramets$mes      <- as.integer(mis_params$mes)   # vector si es 4L:6L
-paramets$ano_ini  <- as.integer(mis_params$ano_ini)
-paramets$anho_idx <- as.integer(mis_params$anho_idx)
+paramets$anho        <- as.integer(mis_params$anho)
+paramets$mes         <- as.integer(mis_params$mes)  
+paramets$ano_ini     <- as.integer(mis_params$ano_ini)
+paramets$anho_idx    <- as.integer(mis_params$anho_idx)
+paramets$flagmadmes  <- isTRUE(mis_params$flagmadmes)
+paramets$flagespmes  <- isTRUE(mis_params$flagespmes)
+paramets$flagmadytm  <- isTRUE(mis_params$flagmadytm)
+paramets$flagespytm  <- isTRUE(mis_params$flagespytm)
+paramets$flagmadanop <- isTRUE(mis_params$flagmadanop)
+paramets$flagespanop <- isTRUE(mis_params$flagespanop)
+paramets$flag_ccaa   <- isTRUE(mis_params$flag_ccaa)
 
 source("./scr/R/nota_sectores_bis/procfun/funciones_flextable.r")
 
@@ -67,8 +85,15 @@ mis_params_quarto <- list(
   } else {
     mis_params$mes
   },
-  ano_ini  = mis_params$ano_ini,
-  anho_idx = mis_params$anho_idx
+  ano_ini     = mis_params$ano_ini,
+  anho_idx    = mis_params$anho_idx,
+  flagmadmes  = isTRUE(mis_params$flagmadmes),
+  flagespmes  = isTRUE(mis_params$flagespmes),
+  flagmadytm  = isTRUE(mis_params$flagmadytm),
+  flagespytm  = isTRUE(mis_params$flagespytm),
+  flagmadanop = isTRUE(mis_params$flagmadanop),
+  flagespanop = isTRUE(mis_params$flagespanop),
+  flag_ccaa   = isTRUE(mis_params$flag_ccaa)
 )
 
 nombre_temporal      <- "temp_render_output.docx"
@@ -168,47 +193,64 @@ unzip(ruta_temporal_creada, exdir = tmp_final)
 plan_mapeo <- list(
   # Pagina 1
   list(m = "MARCADOR_P1_PLOT1",   f = "plot1_mad_evo_mes.png",
-       id = "rIdP1Plot",  w = 8.5,  h = "right",  v = "top",    wr = "square"),
+       id = "rIdP1Plot",  w = 8.5,  h = "right",  v = "top",    wr = "square",
+       ccaa_only = TRUE),
   # list(m = "MARCADOR_P1_CCAA",  f = "table_p1_t1.png",
   #      id = "rIdP1Ccaa",  w = 18.0, h = "center", v = "bottom", wr = "none"),
   
   # Pagina 2
   list(m = "MARCADOR_P2_PLOT2",   f = "plot2_mad_mm12_anos.png",
-       id = "rIdP2Plot",  w = 18.0, h = "left",   v = "bottom", wr = "none"),
+       id = "rIdP2Plot",  w = 18.0, h = "left",   v = "bottom", wr = "none",
+       ccaa_only = TRUE),
   
   # Pagina 3
   list(m = "MARCADOR_P3_CONTRIB", f = paste0("contrib_exp_mad_sec_",  sufijo_mes, ".png"),
-       id = "rIdP3Cont",  w = 10,   h = "right",  v = "top",    wr = "square"),
+       id = "rIdP3Cont",  w = 10,   h = "right",  v = "top",    wr = "square",
+       ccaa_only = FALSE),
   list(m = "MARCADOR_P3_TREEMAP", f = paste0("treemap_exp_mad_sec_",  sufijo_mes, ".png"),
-       id = "rIdP3Tree",  w = 18.0, h = "left",   v = "bottom", wr = "none"),
+       id = "rIdP3Tree",  w = 18.0, h = "left",   v = "bottom", wr = "none",
+       ccaa_only = FALSE),
   
   # Pagina 4
   list(m = "MARCADOR_P4_CONTRIB", f = paste0("contrib_imp_mad_sec_",  sufijo_mes, ".png"),
-       id = "rIdP4Cont",  w = 10,   h = "right",  v = "top",    wr = "square"),
+       id = "rIdP4Cont",  w = 10,   h = "right",  v = "top",    wr = "square",
+       ccaa_only = FALSE),
   list(m = "MARCADOR_P4_TREEMAP", f = paste0("treemap_imp_mad_sec_",  sufijo_mes, ".png"),
-       id = "rIdP4Tree",  w = 18.0, h = "left",   v = "bottom", wr = "none"),
+       id = "rIdP4Tree",  w = 18.0, h = "left",   v = "bottom", wr = "none",
+       ccaa_only = FALSE),
   
   # Pagina 5
   list(m = "MARCADOR_P5_CONTRIB", f = paste0("contrib_exp_mad_pais_", sufijo_mes, ".png"),
-       id = "rIdP5Cont",  w = 10,   h = "right",  v = "top",    wr = "square"),
+       id = "rIdP5Cont",  w = 10,   h = "right",  v = "top",    wr = "square",
+       ccaa_only = FALSE),
   list(m = "MARCADOR_P5_TREEMAP", f = paste0("treemap_exp_mad_pais_", sufijo_mes, ".png"),
-       id = "rIdP5Tree",  w = 18.0, h = "left",   v = "bottom", wr = "none"),
+       id = "rIdP5Tree",  w = 18.0, h = "left",   v = "bottom", wr = "none",
+       ccaa_only = FALSE),
   
   # Pagina 6
   list(m = "MARCADOR_P6_CONTRIB", f = paste0("contrib_imp_mad_pais_", sufijo_mes, ".png"),
-       id = "rIdP6Cont",  w = 10,   h = "right",  v = "top",    wr = "square"),
+       id = "rIdP6Cont",  w = 10,   h = "right",  v = "top",    wr = "square",
+       ccaa_only = FALSE),
   list(m = "MARCADOR_P6_TREEMAP", f = paste0("treemap_imp_mad_pais_", sufijo_mes, ".png"),
-       id = "rIdP6Tree",  w = 18.0, h = "left",   v = "bottom", wr = "none"),
+       id = "rIdP6Tree",  w = 18.0, h = "left",   v = "bottom", wr = "none",
+       ccaa_only = FALSE),
   
   # Paginas 7 y 8 (Spark Tables)
   list(m = "MARCADOR_P7_SPARK",   f = paste0("tabla_sec_spark_mad_",  sufijo_mes, ".png"),
-       id = "rIdP7Sprk",  w = 18.0, h = "center", v = "center", wr = "none"),
+       id = "rIdP7Sprk",  w = 18.0, h = "center", v = "center", wr = "none",
+       ccaa_only = FALSE),
   list(m = "MARCADOR_P8_SPARK",   f = paste0("tabla_pais_spark_mad_", sufijo_mes, ".png"),
-       id = "rIdP8Sprk",  w = 18.0, h = "center", v = "center", wr = "none")
+       id = "rIdP8Sprk",  w = 18.0, h = "center", v = "center", wr = "none",
+       ccaa_only = FALSE)
 )
 
 # Ejecución secuencial controlada del plan de inyección
 for (item in plan_mapeo) {
+  # Saltar entradas exclusivas de CC.AA. si el flag está desactivado
+  if (isTRUE(item$ccaa_only) && !isTRUE(paramets$flag_ccaa)) {
+    cat("  --> Saltado (flag_ccaa = FALSE):", item$m, "\n")
+    next
+  }
   ruta_completa_img <- file.path(paramets$path_outp, item$f)
   exito <- inyectar_imagen_objeto(
     tmp_dir   = tmp_final,
