@@ -65,6 +65,7 @@ paramets <- list(
   colpal2               = "#b4d7b4",
   colpal3               = "#2d5532",
   colpal4               = "#b4d7b4",
+  colpal5               = "#6f6f4e",
   colorbf               = "#FFFFFF",
   palette_treemap_exp   = c(negativo = "#E47F56", neutro = "lightgrey", positivo = "#2d5532"),
   palette_treemap_imp   = c(negativo = "#E47F56", neutro = "lightgrey", positivo = "#b4d7b4"),

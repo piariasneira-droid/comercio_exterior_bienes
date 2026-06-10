@@ -214,7 +214,7 @@ if (isTRUE(paramets$flag_ccaa)) {
     ano_filtro = paramets$ano_ini,
     colde1     = paramets$colpal1,
     colde3     = paramets$colpal2,
-    colde5     = paramets$colpal3)
+    colde5     = paramets$colpal5)
 
   plot_mad_imp_anos <-  .grafica_anos(
     dataframe   = df_ccaa_amp, 
@@ -226,7 +226,7 @@ if (isTRUE(paramets$flag_ccaa)) {
     ano_filtro  = paramets$ano_ini,
     colde1      = paramets$colpal1,
     colde3      = paramets$colpal2,
-    colde5      = paramets$colpal3)
+    colde5      = paramets$colpal5)
 
   plot_mad_mm12_anos <- (
     (plot_mad_exp_anos + theme(plot.margin = unit(c(0, paramets$mh/2, paramets$mv/2, 0), "cm"))) + 
