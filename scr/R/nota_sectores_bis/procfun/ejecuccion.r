@@ -16,4 +16,5 @@ source("./scr/R/nota_sectores_bis/procfun/configaux.r")    # mes_label, fecha_ho
 source("./scr/R/nota_sectores_bis/main_etl.r")             # ETL — genera todos los data.frames
 source("./scr/R/nota_sectores_bis/main_tablas.R")          # sin cambios
 source("./scr/R/nota_sectores_bis/main_phtmls.R")          # plots HTML + PNG
-source("./scr/R/nota_sectores_bis/main_texts.R")           # listas de texto para el informe
+# source("./scr/R/nota_sectores_bis/main_texts.R")           # listas de texto para el informe
+# source("./scr/R/nota_sectores_bis/main_tablas_gt.r")  

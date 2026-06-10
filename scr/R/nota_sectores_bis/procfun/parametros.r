@@ -72,7 +72,7 @@ paramets <- list(
   font_axis             = 8,
   fuente_texto          = "Calibri",
   max_nivel_sec         = 3L,
-  max_nivel_pai         = 3L,
+  max_nivel_pai         = 4L,
   max_bars_con          = 3L,
   max_bars_vol          = 8L,
   n_pares_con           = 1000L,

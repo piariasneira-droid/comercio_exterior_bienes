@@ -5,5 +5,8 @@
   },
   "scr/R/nota_sectores_bis/nota_sectores.qmd": {
     "temp_render_output.docx": "6e6d9bd7"
+  },
+  "notebook/Quartos/stemporal/stemporal.qmd": {
+    "stemporal.html": "dcba8638"
   }
 }

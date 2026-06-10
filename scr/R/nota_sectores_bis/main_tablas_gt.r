@@ -2,7 +2,7 @@
 # Generación de tablas GT de comercio exterior Madrid vs España
 
 # Entorno ----
-source("./scr/R/nota_sectores/procfun/funciones_gt.r")
+source("./scr/R/nota_sectores_bis/procfun/funciones_gt.r")
 
 .solo_imagen  <- c("col_contrib_bar", "ancho_cm", "alto_cm", "dpi", "subtitulo", "fuente")
 .solo_img_evol <- c("ancho_cm", "dpi", "subtitulo", "fuente")

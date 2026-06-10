@@ -91,6 +91,10 @@
   "df_contrib_paises_sec_imp",
   "df_contrib_paises_taric_exp",
   "df_contrib_paises_taric_imp",
+  "df_contrib_paises_sec_exp_acu",
+  "df_contrib_paises_sec_imp_acu",
+  "df_contrib_paises_taric_exp_acu",
+  "df_contrib_paises_taric_imp_acu",
   
   # Procesamiento año pasado
   "df_sectores_anopas",

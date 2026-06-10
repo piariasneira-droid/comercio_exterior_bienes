@@ -30,8 +30,8 @@ rm(librerias)
 
 #Parámetros
 local <- TRUE
-perdefecto <- 8L
-anofin <- 2025L
+perdefecto <- 3L
+anofin <- 2026L
 anoini <-1995L
 factoreuros <- as.integer(1e6)
 factorkg <- as.integer(1e3)
@@ -337,14 +337,14 @@ obtencion_data <- eventReactive(input$actualizar, {
   # --- Selección dinámica de fuente de datos ---
   if (local) {
     # ----------- RUTAS LOCALES -----------
-    archivo <- switch(
-      paste(v$region, v$unidades, sep = "_"),
-        "mad_euros" = "../../../data/interim/madrid/madrid_euros_taric.parquet",
-        "esp_euros" = "../../../data/interim/espana/espana_euros_taric.parquet",
-        "mad_kg"    = "../../../data/interim/madrid/madrid_kg_taric.parquet",
-        "esp_kg"    = "../../../data/interim/espana/espana_kg_taric.parquet"
-    )
-    
+  archivo <- switch(
+    paste(v$region, v$unidades, sep = "_"),
+    "mad_euros" = "../../../data/interim/madrid/madrid_euros_taric.parquet",
+    "esp_euros" = "../../../data/interim/espana/espana_euros_taric.parquet",
+    "mad_kg" = "../../../data/interim/madrid/madrid_kg_taric.parquet",
+    "esp_kg" = "../../../data/interim/espana/espana_kg_taric.parquet",
+    stop("Combinación región/unidades no válida")
+  )
     cat("Conectando con archivo Parquet local:", archivo, "\n")
     
     datos_completos <- arrow::open_dataset(archivo) %>%
@@ -559,7 +559,7 @@ obtencion_data <- eventReactive(input$actualizar, {
   df_periodo_paises  <- cruce_taric_pais(df_periodo_paises, df_taric, df_pais)
   
   # Limpieza de memoria
-  rm(datos_completos, df_total_general, df_total_taric, df_total_pais)
+  # rm(datos_completos, df_total_general, df_total_taric, df_total_pais)
   gc(verbose = FALSE)
 
   return(list(

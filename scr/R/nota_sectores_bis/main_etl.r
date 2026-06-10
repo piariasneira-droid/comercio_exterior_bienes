@@ -465,7 +465,7 @@ nombre_pares_sec_exp <- sprintf("contrib_pares_sec_exp_%s.xlsx", sufijo_mes)
   data         = .top_bottom_rep(df_contrib_paises_sec_exp, n = paramets$n_pares_con, flujo = "exp"),
   parametros   = paramets,
   file_name    = nombre_pares_sec_exp,
-  int_cols     = c("año", "cod"),
+  int_cols     = c("año", "cod", "niv_sec"),
   pct_cols     = c("tva", "rep"),
   extra_sheets = list(
     acu    = .top_bottom_rep(df_contrib_paises_sec_exp_acu, n = paramets$n_pares_con, flujo = "exp"),
@@ -479,7 +479,7 @@ nombre_pares_sec_imp <- sprintf("contrib_pares_sec_imp_%s.xlsx", sufijo_mes)
   data         = .top_bottom_rep(df_contrib_paises_sec_imp, n = paramets$n_pares_con, flujo = "imp"),
   parametros   = paramets,
   file_name    = nombre_pares_sec_imp,
-  int_cols     = c("año", "cod"),
+  int_cols     = c("año", "cod", "niv_sec"),
   pct_cols     = c("tva", "rep"),
   # tva and rep are already decimal — do not pass to pct_cols
   extra_sheets = list(

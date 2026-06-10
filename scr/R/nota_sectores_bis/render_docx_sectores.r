@@ -11,7 +11,7 @@ tiempo_inicio <- proc.time()
 # ===========================================================
 mis_params <- list(
   anho         = 2026L,            # Año análisis
-  mes          = 4L:6L,            # mes suelto (3L), trimestre (4L:6L) o conjunto de meses sueltos c(1L, 3L, 4L, 5L)
+  mes          = 3L,               # mes suelto (3L), trimestre (4L:6L) o conjunto de meses sueltos c(1L, 3L, 4L, 5L)
   ano_ini      = 2017L,            # Año inicial
   anho_idx     = 2019L,            # Año de referencia para tendencias anexos
   

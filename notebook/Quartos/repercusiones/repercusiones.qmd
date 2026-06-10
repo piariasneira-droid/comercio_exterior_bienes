@@ -55,8 +55,8 @@ flujodefecto <- 1L
 
 if (local) {
   # Carga desde rutas locales
-  df_taric <- cargar_taric("../../../data/raw/metadatos/TARIC.csv")
-  df_pais  <- cargar_pais("../../../data/metatratado/paises.xlsx")
+    df_taric <- cargar_taric("../../../data/raw/metadatos/TARIC.csv")
+    df_pais  <- cargar_pais("../../../data/metatratado/paises.xlsx")
 } else {
   # Carga desde Google Drive
   df_taric <- cargar_taric("https://drive.google.com/uc?export=download&id=14oy_QVc0jXgGZZTA_Ge5skYpzepQLefs")

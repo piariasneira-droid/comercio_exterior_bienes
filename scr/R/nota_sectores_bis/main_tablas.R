@@ -4,9 +4,9 @@
 #   · Países   — Madrid
 
 # Entorno ----
-source("./scr/R/nota_sectores/procfun/funciones_tabla_anexos.R")
-source("./scr/R/nota_sectores/procfun/funciones_flextable.r")
-source("./scr/R/nota_sectores/procfun/funciones_plot.r")
+source("./scr/R/nota_sectores_bis/procfun/funciones_tabla_anexos.R")
+source("./scr/R/nota_sectores_bis/procfun/funciones_flextable.r")
+source("./scr/R/nota_sectores_bis/procfun/funciones_plot.r")
 
 # Tabla CCAA ----
 if (isTRUE(paramets$flag_ccaa)) {

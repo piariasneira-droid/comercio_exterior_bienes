@@ -811,7 +811,7 @@
   }
   
   procesar_region <- function(df) {
-    fila_ue27    <- añadir_fila_agregada(df, c(3, 23),      1013L, "UE 27",   2L,  2L)
+    fila_ue27    <- añadir_fila_agregada(df, c(3, 24),      1013L, "UE 27",   2L,  2L)
     fila_america <- añadir_fila_agregada(df, c(38, 41, 47), 1014L, "AMERICA", 37L, 1L)
     fila_asia    <- añadir_fila_agregada(df, c(49, 59),     1015L, "ASIA",    48L, 1L)
     

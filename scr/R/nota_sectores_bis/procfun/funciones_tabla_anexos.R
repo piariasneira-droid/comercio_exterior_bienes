@@ -643,7 +643,7 @@
   # ── 9. Guardar imagen ─────────────────────────────────────────────────────────
   gtsave(gt_tbl, filename = ruta_salida,
          vwidth = round(ancho_cm / 2.54 * dpi), zoom = dpi / 96)
-  
+
   if (!is.null(ancho_px) && !is.null(alto_px)) {
     magick::image_read(ruta_salida) |>
       magick::image_resize(paste0(ancho_px, "x", alto_px, "!")) |>

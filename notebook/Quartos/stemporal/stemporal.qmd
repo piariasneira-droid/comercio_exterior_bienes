@@ -30,7 +30,7 @@ rm(librerias)
 #Parámetros
 local <- TRUE
 anoini <- 1995L
-anofin <- 2025L
+anofin <- 2029L
 perdefecto <- 41L
 idxdefecto <- "2019-01-01"
 factoreuros <- as.integer(1e6)

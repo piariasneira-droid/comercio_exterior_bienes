@@ -32,7 +32,7 @@ rm(librerias)
 local <- TRUE
 perdefecto <- 8L
 anodefecto <- 2025L
-anofin <- 2025L
+anofin <- 2026L
 factoreuros <- as.integer(1e6)
 factorkg <- as.integer(1e3)
 uneuros <- "mill. €"

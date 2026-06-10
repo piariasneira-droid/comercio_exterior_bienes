@@ -20,7 +20,7 @@ library(magick)
 library(png)
 library(zip)
 
-# # Lista de paquetes requeridos
+# Lista de paquetes requeridos
 # paquetes <- c(
 #   "arrow",
 #   "dplyr",

@@ -8,8 +8,8 @@ instala_carga_librerias(librerias)
 rm(librerias)
 
 #### Carga metadatos ----
-df_taric <- cargar_taric("../../datos/metadatos/TARIC.csv")
-df_pais  <- cargar_pais("../../datos/metadatos/paises.xlsx")
+df_taric <- cargar_taric("../../../data/raw/metadatos/TARIC.csv")
+df_pais  <- cargar_pais("../../../data/metatratado/paises.xlsx")
 
 #### Parámetros (simulando inputs del Shiny) ----
 factoreuros <- as.integer(1e6)
@@ -25,10 +25,10 @@ region <- "mad"
 unidades <- "euros"    
 cflujo <- 1L          
 ano_ini <- 2020L
-ano_fin <- 2025L
+ano_fin <- 2026L
 ctaric <- 0          
 cpais <- 0L           
-per <- 54L             
+per <- 3L             
 n_lineas <- 5L
 
 valores <- list(
@@ -151,10 +151,10 @@ rm(fila)
 # Selección de archivo según región y unidades
 archivo <- switch(
   paste(region, unidades, sep = "_"),
-  "mad_euros" = "../../datos/totales_mad_esp/de_mad_euros.parquet",
-  "esp_euros" = "../../datos/totales_mad_esp/de_esp_euros.parquet",
-  "mad_kg" = "../../datos/totales_mad_esp/de_mad_kg.parquet",
-  "esp_kg" = "../../datos/totales_mad_esp/de_esp_kg.parquet",
+  "mad_euros" = "../../../data/interim/madrid/madrid_euros_taric.parquet",
+  "esp_euros" = "../../../data/interim/espana/espana_euros_taric.parquet",
+  "mad_kg" = "../../../data/interim/madrid/madrid_kg_taric.parquet",
+  "esp_kg" = "../../../data/interim/espana/espana_kg_taric.parquet",
   stop("Combinación región/unidades no válida")
 )
 
@@ -355,7 +355,7 @@ df_periodo_tar     <- cruce_taric_pais(df_periodo_tar, df_taric, df_pais)
 df_mes_paises      <- cruce_taric_pais(df_mes_paises, df_taric, df_pais)
 df_periodo_paises  <- cruce_taric_pais(df_periodo_paises, df_taric, df_pais)
 
-rm(df_total_general, df_total_taric, df_total_pais)
+# rm(df_total_general, df_total_taric, df_total_pais)
 
 
 plot <- grafica_treemap_taric(
