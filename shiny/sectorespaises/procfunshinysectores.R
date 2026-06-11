@@ -496,7 +496,7 @@ tabla_paises_datacomex <- function(datas, tot, df_paises, parametros) {
   ]
   
   # Añadir fila UE 27
-  df_ue27 <- df_result[orden %in% c(3,23)]
+  df_ue27 <- df_result[orden %in% c(3,24)]
   
   # Crear fila total UE27
   fila_ue27 <- data.table::data.table(

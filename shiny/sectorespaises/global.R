@@ -17,9 +17,9 @@ source("./procfunshinysectores.R")
 
 #### Parámetros por defecto ----
 fil_region   <- "esp"
-fil_ano      <- 2025L
-anofin       <- 2025L
-fil_per      <- 9L
+fil_ano      <- 2026L
+anofin       <- 2026L
+fil_per      <- 3L
 fil_pais     <- 0L
 fil_sectores <- "0"
 
